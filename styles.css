@@ -1,0 +1,356 @@
+@font-face {
+  font-family: "iA Writer Quattro V";
+  src: url("/fonts/iAWriterQuattroV.ttf") format("truetype-variations");
+  font-weight: 1 999;
+}
+
+@font-face {
+  font-family: "iA Writer Quattro V";
+  font-style: italic;
+  src: url("/fonts/iAWriterQuattroV-Italic.ttf") format("truetype-variations");
+  font-weight: 1 999;
+}
+
+@font-face {
+  font-family: "iA Writer Mono";
+  src: url("/fonts/iAWriterMonoV.ttf") format("truetype-variations");
+  font-weight: 1 999;
+}
+
+@font-face {
+  font-family: "iA Writer Mono";
+  font-style: italic;
+  src: url("/fonts/iAWriterMonoV-Italic.ttf") format("truetype-variations");
+  font-weight: 1 999;
+}
+
+@font-face {
+  font-family: "Petrona";
+  src: url("/fonts/Petrona.ttf") format("truetype-variations");
+  font-weight: 1 999;
+}
+
+@font-face {
+  font-family: "Petrona";
+  font-style: italic;
+  src: url("/fonts/Petrona-Italic.ttf") format("truetype-variations");
+  font-weight: 1 999;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  /* font-family: "iA Writer Quattro V", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif; */
+  font-family: var(--fonts-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  color: hsl(206, 10%, 5%);
+  line-height: 1;
+}
+
+html,
+body,
+#root,
+#__next,
+#__next > div,
+.theme-0 {
+  height: 100%;
+}
+
+#__next {
+  position: relative;
+  z-index: 0;
+}
+
+img {
+  vertical-align: middle;
+}
+
+button {
+  align-items: center;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  font: inherit;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  text-align: inherit;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+button::before,
+button::after {
+  box-sizing: border-box;
+}
+
+button,
+input {
+  font-family: var(--fonts-sans);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+img {
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+/*
+  Hack: This fixes the position of the popover to the viewport, so it doesn't
+  move when we scroll. However, this isn't so great for popovers that are in
+  other content that we do want to move on scroll.
+
+  Find out a way to select the element (It's in a Portal, so can't use nested).
+
+  - Add className to Popover? (dunno how to select the portal then)
+*/
+/* [data-radix-portal] {
+  position: fixed !important;
+}
+
+[data-radix-popover-content-wrapper] {
+  position: fixed !important;
+} */
+
+.ProseMirror {
+  line-height: 1.5em !important;
+}
+
+.ProseMirror > p {
+  margin: 1.5rem 0 !important;
+}
+
+.ProseMirror .heading-anchor {
+  padding: 12px 8px !important;
+}
+
+.ProseMirror blockquote {
+  color: var(--colors-gray900);
+  font-size: 115%;
+  overflow: visible !important;
+  padding: var(--space-2) var(--space-6) !important;
+  padding-left: var(--space-6) !important;
+  margin-left: calc(-1 * var(--space-6)) !important;
+  margin-right: calc(-1 * var(--space-6)) !important;
+  line-height: 1.5 !important;
+}
+
+.ProseMirror blockquote:before {
+  width: 6px !important;
+  margin-left: calc(-1 * var(--space-6)) !important;
+}
+
+.ProseMirror pre {
+  font-size: 85% !important;
+  line-height: 1.25 !important;
+  margin-bottom: 1.5rem !important;
+  border: none !important;
+  padding: var(--space-4) var(--space-6) !important;
+  /* margin-left: calc(-1 * var(--space-6)) !important;
+  margin-right: calc(-1 * var(--space-6)) !important; */
+  border-radius: var(--radii-3) !important;
+}
+
+.ProseMirror .notice-block {
+  line-height: 1.5em;
+  font-family: var(--fonts-sans) !important;
+  font-size: var(--fontSizes-3) !important;
+  padding: var(--space-3) var(--space-2) !important;
+  margin: 1.5rem 0 !important;
+  border-radius: var(--radii-3) !important;
+}
+
+.ProseMirror .notice-block .icon {
+  top: 0 !important;
+  margin-right: var(--space-2) !important;
+}
+
+.ProseMirror .code-block select,
+.ProseMirror .notice-block select,
+.ProseMirror .code-block button,
+.ProseMirror .notice-block button {
+  font-family: var(--fonts-sans) !important;
+}
+
+.ProseMirror .code-block select,
+.ProseMirror .code-block button {
+  top: var(--space-2) !important;
+  right: calc((-1 * var(--space-5))) !important;
+}
+
+.ProseMirror .notice-block button,
+.ProseMirror .code-block button {
+  border: none;
+  background: transparent !important;
+  box-shadow: none;
+  border-radius: var(--radii-5);
+  height: var(--sizes-5) !important;
+  padding-left: var(--space-2) !important;
+  padding-right: var(--space-2) !important;
+  font-family: var(--fonts-sans);
+  font-size: var(--fontSizes-2);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--colors-gray900) !important;
+
+  transition: 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-property: color box-shadow background-color;
+}
+
+.ProseMirror .notice-block button:hover,
+.ProseMirror .code-block button:hover {
+  background: var(--colors-gray300) !important;
+  color: var(--colors-hiContrast) !important;
+}
+
+.ProseMirror .notice-block button:active,
+.ProseMirror .code-block button:active {
+  background-color: var(--colors-gray300) !important;
+}
+
+.ProseMirror .notice-block button:focus,
+.ProseMirror .code-block button:focus {
+  background-color: var(--colors-gray100);
+  box-shadow: inset 0 0 0 1px var(--colors-gray700),
+    0 0 0 1px var(--colors-gray700);
+}
+
+.ProseMirror code {
+  color: #228822;
+  font-size: 85% !important;
+  border: none !important;
+  padding: 0 0.125em !important;
+}
+
+.ProseMirror a {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: var(--colors-blue900);
+  text-decoration-thickness: 1px;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding: 0 0 0 1.5em !important;
+}
+
+.ProseMirror li {
+  margin-bottom: 0.5em !important;
+}
+
+.ProseMirror ul.checkbox_list {
+  padding: 0 0 0 0.5em !important;
+}
+
+.ProseMirror .notice-block {
+  margin-bottom: 1.5rem !important;
+}
+
+.ProseMirror .scrollable-wrapper {
+  margin: 1.5rem 0 !important;
+}
+
+.ProseMirror .scrollable {
+  margin-top: -1em;
+}
+
+.ProseMirror table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.ProseMirror table th:first-child {
+  border-top-left-radius: 4px;
+}
+
+.ProseMirror table th:last-child {
+  border-top-right-radius: 4px;
+}
+
+.ProseMirror table tr:last-child td:first-child {
+  border-bottom-left-radius: 4px;
+}
+
+.ProseMirror table tr:last-child td:last-child {
+  border-bottom-right-radius: 4px;
+}
+
+.ProseMirror table td,
+.ProseMirror table th {
+  border: 1px solid var(--colors-gray600);
+  border-left: none !important;
+}
+
+.ProseMirror table th {
+  background-color: var(--colors-gray100);
+}
+
+.ProseMirror table td {
+  border-top: none !important;
+}
+
+.ProseMirror table td:first-child,
+.ProseMirror table th:first-child {
+  border-left: 1px solid var(--colors-gray600) !important;
+}
+
+.ProseMirror hr {
+  margin: 1.5rem 0 !important;
+}
+
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  margin: 1.5em 0 0.5em;
+  line-height: 1.25 !important;
+  margin: 1.5em 0 0.5em !important;
+}
+
+.ProseMirror h1 {
+  /* font-size: 48px !important; */
+  font-size: 2.4em;
+  font-weight: 300 !important;
+}
+
+.ProseMirror h2 {
+  font-size: 1.75em;
+  /* font-size: 35px; */
+  font-weight: 350 !important;
+}
+
+.ProseMirror h3 {
+  font-size: 1.4em;
+  /* font-size: 28px; */
+  font-weight: 400 !important;
+}
+
+.ProseMirror h4 {
+  font-size: 1.2em;
+  /* font-size: 24px; */
+  font-weight: 450 !important;
+}
