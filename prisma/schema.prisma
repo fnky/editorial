@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// TODO: Add rawBody and htmlBody?
+
+model Post {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  body        String
+  tags        Tag[]
+  status      PostStatus
+  publishedAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Tag {
+  id     String  @id @default(cuid())
+  slug   String  @unique
+  label  String
+  Post   Post?   @relation(fields: [postId], references: [id])
+  postId String?
+}
