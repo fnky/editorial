@@ -1,11 +1,7 @@
 import { ReactElement, useState } from "react";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import {
-  Button,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../components";
+import { Button, Popover, PopoverContent, PopoverTrigger } from "components";
+
 import EditorDocumentListView from "./EditorDocumentListView";
 
 const EditorMenuPopover = () => {

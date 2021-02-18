@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import type { ReactElement } from "react";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
-import { styled } from "../stitches.config";
+import { styled } from "stitches.config";
+import { useOffline } from "hooks/useOffline";
 import { Box, Tooltip, Text } from "./";
-import { useOffline } from "../hooks/useOffline";
 
 const StyledOfflineIndicator = styled(Box, {
   padding: "$2",
@@ -13,11 +13,11 @@ const StyledTooltipButton = styled("button", {
   padding: "$2",
 });
 
-export function OfflineIndicator(): ReactNode {
+export function OfflineIndicator(): ReactElement {
   const isOffline = useOffline();
 
   if (!isOffline) {
-    return null;
+    return <></>;
   }
 
   return (

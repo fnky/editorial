@@ -1,7 +1,6 @@
-import type { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import { forwardRef } from "react";
-import { styled } from "../stitches.config";
+import { styled } from "stitches.config";
 
 const NAME = "ShadowHeader";
 export const SHADOW_HEADER_DEFAULT_TAG = "div";

@@ -1,15 +1,14 @@
 import { ReactElement, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { CaretDownIcon } from "@radix-ui/react-icons";
-
+import { css, styled } from "stitches.config";
 import {
   Button,
   DocumentTitle,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "../../components";
-import { css, styled } from "../../stitches.config";
+} from "components";
 
 import EditorDetailsFormView from "./EditorDetailsFormView";
 import { titleState } from "./EditorState";

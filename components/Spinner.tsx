@@ -1,4 +1,4 @@
-import { css, styled } from "../stitches.config";
+import { css, styled } from "stitches.config";
 
 const spin = css.keyframes({
   "0%": { transform: "rotateZ(0deg)" },

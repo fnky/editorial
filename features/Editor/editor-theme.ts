@@ -1,5 +1,5 @@
 import { theme as defaultTheme } from "rich-markdown-editor";
-import { theme, darkTheme } from "../../stitches.config";
+import { theme, darkTheme } from "stitches.config";
 
 type DefaultTheme = typeof defaultTheme;
 

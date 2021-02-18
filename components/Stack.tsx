@@ -1,4 +1,4 @@
-import { createTokenVariant, styled } from "../stitches.config";
+import { createTokenVariant, styled } from "stitches.config";
 
 const Stack = styled("div", {
   display: "flex",
@@ -6,52 +6,52 @@ const Stack = styled("div", {
   variants: {
     direction: {
       vertical: {
-        flexDirection: "row"
+        flexDirection: "row",
       },
       horizontal: {
-        flexDirection: "column"
-      }
+        flexDirection: "column",
+      },
     },
     gap: createTokenVariant("space", "gap"),
     alignment: {
       start: {
-        alignItems: "flex-start"
+        alignItems: "flex-start",
       },
       end: {
-        alignItems: "flex-end"
+        alignItems: "flex-end",
       },
       center: {
-        alignItems: "center"
-      }
+        alignItems: "center",
+      },
     },
     distribution: {
       start: {
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
       },
       center: {
-        justifyContent: "center"
+        justifyContent: "center",
       },
       end: {
-        justifyContent: "flex-end"
+        justifyContent: "flex-end",
       },
       "space-between": {
-        justifyContent: "space-between"
+        justifyContent: "space-between",
       },
       "space-around": {
-        justifyContent: "space-around"
+        justifyContent: "space-around",
       },
       "space-evenly": {
-        justifyContent: "space-evenly"
-      }
-    }
-  }
+        justifyContent: "space-evenly",
+      },
+    },
+  },
 });
 
 Stack.defaultProps = {
   direction: "vertical",
   gap: "1",
   alignment: "center",
-  distribution: "space-around"
+  distribution: "space-around",
 };
 
 export { Stack };

@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, StitchesProps, StitchesVariants } from "../stitches.config";
+import { styled, StitchesProps, StitchesVariants } from "stitches.config";
 
 const StyledThumb = styled(SwitchPrimitive.Thumb, {
   position: "absolute",
@@ -16,8 +16,8 @@ const StyledThumb = styled(SwitchPrimitive.Thumb, {
   willChange: "transform",
 
   '&[data-state="checked"]': {
-    transform: "translateX(11px)"
-  }
+    transform: "translateX(11px)",
+  },
 });
 
 const StyledSwitch = styled(SwitchPrimitive.Root, {
@@ -35,10 +35,10 @@ const StyledSwitch = styled(SwitchPrimitive.Root, {
   userSelect: "none",
   WebkitTapHighlightColor: "rgba(0,0,0,0)",
   "&::before": {
-    boxSizing: "border-box"
+    boxSizing: "border-box",
   },
   "&::after": {
-    boxSizing: "border-box"
+    boxSizing: "border-box",
   },
 
   width: "$5",
@@ -47,21 +47,21 @@ const StyledSwitch = styled(SwitchPrimitive.Root, {
   borderRadius: "$pill",
   position: "relative",
   "&:focus": {
-    boxShadow: "0 0 0 2px $gray700"
+    boxShadow: "0 0 0 2px $gray700",
   },
 
   '&[data-state="checked"]': {
     backgroundColor: "$blue800",
     "&:focus": {
-      boxShadow: "0 0 0 2px $blue700"
-    }
+      boxShadow: "0 0 0 2px $blue700",
+    },
   },
 
   variants: {
     size: {
       "1": {
         width: "$5",
-        height: "$3"
+        height: "$3",
       },
       "2": {
         width: "$7",
@@ -71,12 +71,12 @@ const StyledSwitch = styled(SwitchPrimitive.Root, {
           height: 21,
           transform: "translateX(2px)",
           '&[data-state="checked"]': {
-            transform: "translateX(22px)"
-          }
-        }
-      }
-    }
-  }
+            transform: "translateX(22px)",
+          },
+        },
+      },
+    },
+  },
 });
 
 type SwitchCSSProp = Pick<StitchesProps<typeof StyledSwitch>, "css">;

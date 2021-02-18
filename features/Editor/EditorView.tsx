@@ -1,14 +1,13 @@
 import type { ReactElement } from "react";
+import type { ToastType } from "rich-markdown-editor/dist/types";
 import { useCallback, useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import toast from "react-hot-toast";
 import RichMarkdownEditor from "rich-markdown-editor";
-import type { ToastType } from "rich-markdown-editor/dist/types";
 import { useDebouncedCallback } from "use-debounce";
-
-import { Box } from "../../components";
-import useCombinedCallback from "../../hooks/useCombinedCallback";
-import { styled } from "../../stitches.config";
+import { styled } from "stitches.config";
+import { Box } from "components";
+import useCombinedCallback from "hooks/useCombinedCallback";
 
 import EditorToolBarView from "./EditorToolBarView";
 import {
@@ -68,7 +67,7 @@ export default function EditorView(): ReactElement {
       const text = getValue();
       setContent(text);
     },
-    250
+    250,
   );
 
   const handleMouseEnter = useCallback(() => {

@@ -1,7 +1,6 @@
 import React from "react";
-import { styled, StitchesProps, StitchesVariants } from "../stitches.config";
-
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
+import { styled, StitchesProps, StitchesVariants } from "stitches.config";
 
 const DEFAULT_TAG = "button";
 

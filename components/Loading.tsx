@@ -1,9 +1,7 @@
 import { forwardRef } from "react";
 import * as Polymorphic from "@radix-ui/react-polymorphic";
-import { Box } from "./Box";
-import type { StitchesProps, StitchesVariants } from "../stitches.config";
-import { styled } from "../stitches.config";
-import { Spinner } from "./Spinner";
+import { styled, StitchesProps, StitchesVariants } from "stitches.config";
+import { Spinner, Box } from "./";
 
 const StyledLoading = styled(Box, {
   display: "flex",

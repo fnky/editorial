@@ -1,7 +1,6 @@
 import * as React from "react";
-import { styled, StitchesProps, StitchesVariants } from "../stitches.config";
-
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
+import { styled, StitchesProps, StitchesVariants } from "stitches.config";
 
 const DEFAULT_TAG = "a";
 
@@ -14,13 +13,13 @@ const StyledLink = styled(DEFAULT_TAG, {
   WebkitTapHighlightColor: "rgba(0,0,0,0)",
   lineHeight: "inherit",
   "&:hover": {
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
   },
   "&:focus": {
     outlineWidth: "2px",
     outlineStyle: "solid",
     outlineOffset: "2px",
-    textDecorationLine: "none"
+    textDecorationLine: "none",
   },
   variants: {
     variant: {
@@ -28,29 +27,29 @@ const StyledLink = styled(DEFAULT_TAG, {
         color: "$blue900",
         textDecorationColor: "$blue300",
         "&:focus": {
-          outlineColor: "$blue700"
-        }
+          outlineColor: "$blue700",
+        },
       },
       subtle: {
         color: "$gray900",
         textDecorationColor: "$gray300",
         "&:focus": {
-          outlineColor: "$gray700"
-        }
+          outlineColor: "$gray700",
+        },
       },
       contrast: {
         color: "inherit",
         textDecoration: "underline",
         textDecorationColor: "$gray300",
         "&:hover": {
-          textDecorationColor: "$gray600"
+          textDecorationColor: "$gray600",
         },
         "&:focus": {
-          outlineColor: "$gray700"
-        }
-      }
-    }
-  }
+          outlineColor: "$gray700",
+        },
+      },
+    },
+  },
 });
 
 type LinkCSSProp = Pick<StitchesProps<typeof StyledLink>, "css">;

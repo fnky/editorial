@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-pascal-case react-hooks/exhaustive-deps */
 import * as React from "react";
-import { styled, utils, theme } from "../stitches.config";
+import { styled, utils, theme } from "stitches.config";
 import { flexGapSupported } from "./flexGapSupported";
 
 /** A lot of casting is happening in this fine which should
@@ -10,7 +10,7 @@ import { flexGapSupported } from "./flexGapSupported";
 // when gap is supported
 const _Flex = styled("div", {
   boxSizing: "border-box",
-  display: "flex"
+  display: "flex",
 });
 
 // https://pbs.twimg.com/media/EcrZhh8XYAEU_-M?format=jpg&name=small
@@ -21,7 +21,7 @@ const resolveUtils = (css: any, resolved: any = {}): any => {
     if (key in utils) {
       Object.assign(
         resolved,
-        (utils as any)[key](value, { tokens: theme, utils })
+        (utils as any)[key](value, { tokens: theme, utils }),
       );
     } else if (typeof value === "object" && value) {
       resolved[key] = resolved[key] || {};
@@ -49,7 +49,7 @@ export const Flex = (React.forwardRef<HTMLDivElement, Props>(
     const [gap, columnGap, rowGap]: any[] = [
       style?.gap || rCss.gap,
       style?.columnGap || rCss.columnGap,
-      style?.rowGap || rCss.rowGap
+      style?.rowGap || rCss.rowGap,
     ];
 
     // when flexGap is not supported force a re-render to render the polyfill
@@ -93,7 +93,7 @@ export const Flex = (React.forwardRef<HTMLDivElement, Props>(
           ref={ref}
           style={restOfInlineStyles}
           css={{
-            ...restOfStyles
+            ...restOfStyles,
           }}
           {...props}
         >
@@ -116,7 +116,7 @@ export const Flex = (React.forwardRef<HTMLDivElement, Props>(
                 // prettier-ignore
                 '--column-gap': columnGap ? (theme as any).space[columnGap] || columnGap : 'var(--gap)',
                 // prettier-ignore
-                '--row-gap': rowGap ? (theme as any).space[rowGap] || rowGap : 'var(--gap)'
+                '--row-gap': rowGap ? (theme as any).space[rowGap] || rowGap : 'var(--gap)',
               }).reduce<Record<string, string>>((acc, curr) => {
                 if (curr[1] !== undefined) {
                   acc[curr[0]] = curr[1];
@@ -134,13 +134,13 @@ export const Flex = (React.forwardRef<HTMLDivElement, Props>(
               // && for Injection oooordeeerrr
               // since atomic stitches has issues with guaranteeing the order of injection
               "&& > *": {
-                margin: "calc(var(--row-gap) / 2) calc(var(--column-gap) / 2)"
+                margin: "calc(var(--row-gap) / 2) calc(var(--column-gap) / 2)",
               },
               // negative margin on the container to accommodate for margin added on the sides by the children
               margin: "calc(var(--row-gap) / -2) calc(var(--column-gap) / -2)",
               // fix the container size
               width: "calc(100%  + var(--column-gap))",
-              height: "calc(100% + calc(var(--row-gap) / 2 ))"
+              height: "calc(100% + calc(var(--row-gap) / 2 ))",
             }}
           >
             {children}
@@ -152,5 +152,5 @@ export const Flex = (React.forwardRef<HTMLDivElement, Props>(
     return (
       <_Flex {...props} children={children} css={css} style={style} ref={ref} />
     );
-  }
+  },
 ) as any) as typeof _Flex;

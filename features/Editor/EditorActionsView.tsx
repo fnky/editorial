@@ -3,9 +3,8 @@ import { useCallback } from "react";
 import { useRecoilState } from "recoil";
 import toast from "react-hot-toast";
 import { motion, AnimateSharedLayout } from "framer-motion";
-
-import { Box, Button } from "../../components";
-import { styled } from "../../stitches.config";
+import { styled } from "stitches.config";
+import { Box, Button } from "components";
 
 import { readOnlyState } from "./EditorState";
 

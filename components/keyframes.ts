@@ -1,4 +1,4 @@
-import { css } from "../stitches.config";
+import { css } from "stitches.config";
 
 export const slideDown = css.keyframes({
   "0%": { opacity: 0, transform: "scale(0.9) translateY(-10px)" },

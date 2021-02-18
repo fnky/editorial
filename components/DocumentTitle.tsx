@@ -1,7 +1,6 @@
 import type { ReactNode, ReactElement, MouseEventHandler } from "react";
-import { styled } from "../stitches.config";
-import { ButtonProps } from "./Button";
-import { Box, Text } from "./";
+import { styled } from "stitches.config";
+import { Box, Text, ButtonProps } from "./";
 
 const StyledDocumentTitle = styled(Box, {
   display: "inline-flex",

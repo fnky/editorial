@@ -1,5 +1,5 @@
 import type { ReactNode, AllHTMLAttributes } from "react";
-import { styled } from "../stitches.config";
+import { styled } from "stitches.config";
 import { Box, Input } from "./";
 
 const StyledField = styled("label", {

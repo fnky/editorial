@@ -2,8 +2,8 @@ import type { ReactElement, ReactNode } from "react";
 import Link from "next/link";
 import { FileTextIcon, ReaderIcon } from "@radix-ui/react-icons";
 import { groupBy } from "lodash";
-import { Box } from "../../components";
-import { styled } from "../../stitches.config";
+import { styled } from "stitches.config";
+import { Box } from "components";
 
 const List = styled(Box, {
   position: "relative",
@@ -148,7 +148,7 @@ const allPosts: Post[] = [
 ];
 
 const sections = groupBy(allPosts, (post) =>
-  post.publishedAt == null ? "Drafts" : "Published"
+  post.publishedAt == null ? "Drafts" : "Published",
 );
 
 type Item =

@@ -1,11 +1,9 @@
-import type { ReactNode, ComponentProps } from "react";
-import type { StitchesProps } from "../stitches.config";
-import { forwardRef } from "react";
+import { forwardRef, ReactNode, ComponentProps } from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled } from "../stitches.config";
-import { Box } from "./Box";
+import { styled, StitchesProps } from "stitches.config";
 import { slideDown, slideUp } from "./keyframes";
+import { Box } from "./";
 
 type PopoverProps = ComponentProps<typeof PopoverPrimitive.Root> & {
   children: ReactNode;
@@ -66,5 +64,5 @@ export const PopoverContent = forwardRef(
         </Box>
       )}
     </StyledContent>
-  )
+  ),
 ) as PopoverContentComponent;

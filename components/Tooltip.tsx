@@ -1,9 +1,8 @@
 import * as React from "react";
-import { styled } from "../stitches.config";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { Box } from "./Box";
-import { Text } from "./Text";
+import { styled } from "stitches.config";
 import { slideDown, slideUp } from "./keyframes";
+import { Box, Text } from "./";
 
 type TooltipProps = React.ComponentProps<typeof TooltipPrimitive.Root> &
   React.ComponentProps<typeof TooltipPrimitive.Content> & {
@@ -49,7 +48,7 @@ export function Tooltip({
     >
       <TooltipPrimitive.Trigger
         as={React.forwardRef((props, forwardedRef) =>
-          React.cloneElement(children, { ...props, ref: forwardedRef })
+          React.cloneElement(children, { ...props, ref: forwardedRef }),
         )}
       />
 

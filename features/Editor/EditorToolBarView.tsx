@@ -1,6 +1,6 @@
 import type { MouseEventHandler, ReactElement } from "react";
 import { motion } from "framer-motion";
-import { styled } from "../../stitches.config";
+import { styled } from "stitches.config";
 import {
   ToolBar,
   FlexibleSpace,
@@ -9,7 +9,8 @@ import {
   ShadowHeaderRoot,
   ShadowHeaderContent,
   OfflineIndicator,
-} from "../../components";
+} from "components";
+
 import EditorActionsView from "./EditorActionsView";
 import EditorTitleView from "./EditorTitleView";
 import EditorMenuView from "./EditorMenuView";

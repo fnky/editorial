@@ -1,11 +1,11 @@
 import { forwardRef } from "react";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
 import {
+  styled,
   createTokenVariant,
   StitchesProps,
-  StitchesVariants
-} from "../stitches.config";
-import { styled } from "../stitches.config";
+  StitchesVariants,
+} from "stitches.config";
 
 const DEFAULT_TAG = "div";
 
@@ -24,45 +24,45 @@ export const StyledView = styled(DEFAULT_TAG, {
     center: {
       true: {
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
       },
       false: {},
       x: {
-        alignItems: "center"
+        alignItems: "center",
       },
       y: {
-        justifyContent: "center"
-      }
+        justifyContent: "center",
+      },
     },
     position: {
       static: {
-        position: "static"
+        position: "static",
       },
       absolute: {
-        position: "absolute"
+        position: "absolute",
       },
       fixed: {
-        position: "fixed"
+        position: "fixed",
       },
       relative: {
-        position: "relative"
+        position: "relative",
       },
       sticky: {
-        position: "sticky"
-      }
+        position: "sticky",
+      },
     },
     visible: {
       true: { visibility: "visible" },
-      false: { visibility: "hidden" }
+      false: { visibility: "hidden" },
     },
     overflow: {
       visible: { overflow: "visible" },
-      hidden: { overflow: "hidden" }
+      hidden: { overflow: "hidden" },
     },
     radius: createTokenVariant("radii", "borderRadius"),
     zIndex: createTokenVariant("zIndices", "zIndex"),
-    fontSize: createTokenVariant("fontSizes", "fontSize")
-  }
+    fontSize: createTokenVariant("fontSizes", "fontSize"),
+  },
 });
 
 type ViewCSSProp = Pick<StitchesProps<typeof StyledView>, "css">;
