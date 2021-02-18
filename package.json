@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "yarn -s generate && next",
+    "dev": "next",
     "format": "prettier --write '**/*'",
     "generate": "yarn -s generate:prisma && yarn -s generate:nexus",
     "generate:prisma": "prisma generate",
