@@ -1,6 +1,6 @@
 import { PostStatus } from "@prisma/client";
 import { inputObjectType, mutationType, nonNull } from "nexus";
-import slugify from "slugify";
+import slugify from "utils/slugify";
 
 const CreateTagInput = inputObjectType({
   name: "CreateTagInput",

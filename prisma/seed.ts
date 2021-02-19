@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   const draftPostTitle = faker.lorem.sentences();
-  const draftPostSlug = slugify(draftPostTitle);
+  const draftPostSlug = slugify(draftPostTitle, { lower: true });
 
   const draftPostWithTags = await prisma.post.create({
     data: {
@@ -29,7 +29,7 @@ async function main() {
   });
 
   const publishedPostTitle = faker.lorem.sentences();
-  const publishedPostSlug = slugify(publishedPostTitle);
+  const publishedPostSlug = slugify(publishedPostTitle, { lower: true });
 
   const publishedPostWithTags = await prisma.post.create({
     data: {
