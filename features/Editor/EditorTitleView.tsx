@@ -3,8 +3,9 @@ import { useRecoilValue } from "recoil";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import { css, styled } from "stitches.config";
 import {
-  Button,
   DocumentTitle,
+  Flex,
+  FluidTextInput,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -102,12 +103,13 @@ export default function EditorTitleView(): ReactElement {
     <DocumentTitle
       className="EditorDocumentTitle"
       title={
-        <>
-          <Button title={title} variant="ghost" css={titleButtonCss}>
+        <Flex css={{ display: "flex", alignItems: "center" }}>
+          {/* <Button title={title} variant="ghost" css={titleButtonCss}>
             <TitleButtonInner>{title}</TitleButtonInner>
-          </Button>
+          </Button> */}
+          <FluidTextInput value={title} />
           <EditorDetailsPopover />
-        </>
+        </Flex>
       }
       folder="Drafts"
     />

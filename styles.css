@@ -80,6 +80,11 @@ button {
   border: none;
   box-sizing: border-box;
   display: inline-flex;
+  /**
+   * This causes some issue with the FluidTextInput where the text
+   * of the input and button won't be aligned. Adding it to the input doesn't
+   * work
+   */
   font: inherit;
   justify-content: center;
   line-height: 1;
@@ -99,7 +104,8 @@ button::after {
 
 button,
 input {
-  font-family: var(--fonts-sans);
+  font: inherit;
+  /* font-family: var(--fonts-sans); */
 }
 
 p,

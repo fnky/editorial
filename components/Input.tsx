@@ -9,4 +9,5 @@ export const Input = styled("input", {
   borderRadius: "$2",
   padding: "$1 $1",
   margin: 0,
+  fontVariantNumeric: "tabular-nums",
 });

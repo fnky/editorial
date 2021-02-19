@@ -4,6 +4,7 @@ export * from "./Card";
 export * from "./DocumentTitle";
 export * from "./Field";
 export * from "./Flex";
+export * from "./FluidTextInput";
 export * from "./Form";
 export * from "./Grid";
 export * from "./Input";
