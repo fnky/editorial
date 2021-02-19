@@ -96,19 +96,20 @@ const EditorDetailsPopover = () => {
   );
 };
 
-export function Title() {
-  const [title, setTitle] = useRecoilState(titleState);
-
-  return <FluidTextInput value={title} onSave={setTitle} />;
-}
+const Title = styled(FluidTextInput, {
+  margin: "0 -$1",
+  fontWeight: 500,
+});
 
 export default function EditorTitleView(): ReactElement {
+  const [title, setTitle] = useRecoilState(titleState);
+
   return (
     <DocumentTitle
       className="EditorDocumentTitle"
       title={
         <Flex css={{ display: "flex", alignItems: "center" }}>
-          <Title />
+          <Title value={title} onSave={setTitle} />
           <EditorDetailsPopover />
         </Flex>
       }

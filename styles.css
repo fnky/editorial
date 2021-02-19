@@ -123,6 +123,12 @@ img {
   max-width: 100%;
 }
 
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 /*
   Hack: This fixes the position of the popover to the viewport, so it doesn't
   move when we scroll. However, this isn't so great for popovers that are in

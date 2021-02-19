@@ -1,8 +1,11 @@
 import * as React from "react";
-import { styled } from "stitches.config";
+import type * as Polymorphic from "@radix-ui/react-polymorphic";
+import { styled, StitchesProps, StitchesVariants } from "stitches.config";
 import useResizeObserver from "use-resize-observer";
 import { createReducer } from "utils/createReducer";
 import { useOnClickOutside } from "hooks/useOnClickOutside";
+
+const DEFAULT_TAG = "fieldset";
 
 type State = {
   inputValue: string;
@@ -27,15 +30,11 @@ const reducer = createReducer<State, Action>({
   CANCEL: (_, action) => init(action.value),
 });
 
-const FluidTextInputRoot = styled("fieldset", {
+const FluidTextInputRoot = styled(DEFAULT_TAG, {
   position: "relative",
   boxSizing: "border-box",
   display: "inline-block",
-  border: "none",
-  padding: "0",
-  margin: "0",
   borderRadius: "$2",
-  fontWeight: 500,
 
   ":hover": {
     backgroundColor: "$gray200",
@@ -78,7 +77,7 @@ const FluidTextInputControl = styled("div", {
   padding: "2px 4px",
   margin: "0",
   border: "none",
-  color: "black",
+  color: "currentColor",
   whiteSpace: "pre",
   minWidth: "1em",
   borderRadius: "$1",
@@ -120,7 +119,7 @@ const FluidTextInputButton = styled(FluidTextInputControl, {
     },
     visibility: {
       visible: { opacity: 1 },
-      hidden: { pointerEvents: "none", opacity: 0 },
+      hidden: { opacity: 0, pointerEvents: "none" },
     },
   },
 });
@@ -137,15 +136,14 @@ const FluidTextInputInput = styled(FluidTextInputControl, {
   variants: {
     visibility: {
       visible: { opacity: 1 },
-      hidden: { pointerEvents: "none", opacity: 0 },
+      hidden: { opacity: 0, pointerEvents: "none" },
     },
   },
 });
 
-type FluidTextInputOwnProps = {
+type FluidTextInputProps = {
   id?: string;
   name?: string;
-  className?: string;
   value?: string;
   defaultValue?: string;
   placeholder?: string;
@@ -158,24 +156,37 @@ type FluidTextInputOwnProps = {
   "aria-labelledby"?: string;
 };
 
-export function FluidTextInput({
-  id,
-  className,
-  name,
-  value,
-  defaultValue,
-  placeholder,
-  disabled,
-  readOnly,
-  autoFocus,
-  onChange,
-  onSave,
-  onCancel,
-  ...domProps
-}: FluidTextInputOwnProps) {
+type FluidTextInputCSSProp = Pick<
+  StitchesProps<typeof FluidTextInputRoot>,
+  "css"
+>;
+type FluidTextInputVariants = StitchesVariants<typeof FluidTextInputRoot>;
+type FluidTextInputOwnProps = FluidTextInputProps &
+  FluidTextInputCSSProp &
+  FluidTextInputVariants;
+
+type FluidTextInputComponent = Polymorphic.ForwardRefComponent<
+  typeof DEFAULT_TAG,
+  FluidTextInputOwnProps
+>;
+
+export const FluidTextInput = React.forwardRef((props, forwardedRef) => {
+  const {
+    id,
+    name,
+    value,
+    defaultValue,
+    placeholder,
+    disabled,
+    readOnly,
+    autoFocus,
+    onChange,
+    onSave,
+    onCancel,
+    ...domProps
+  } = props;
   const intialValueRef = React.useRef<string | undefined>(value);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const rootRef = React.useRef<HTMLFieldSetElement>(null);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const [{ inputValue, isEditing }, dispatch] = React.useReducer(
     reducer,
@@ -194,7 +205,6 @@ export function FluidTextInput({
 
   const commitChanges = () => {
     onSave?.(inputValue);
-    console.log("save");
     dispatch({ type: "FINISH_EDIT" });
     intialValueRef.current = inputValue || "";
     inputRef.current?.blur();
@@ -267,9 +277,9 @@ export function FluidTextInput({
 
   return (
     <FluidTextInputRoot
-      ref={rootRef}
-      className={className}
-      data-fluid-text-root
+      {...domProps}
+      ref={forwardedRef}
+      data-fluid-text-input-root
       state={isEditing ? "active" : "inactive"}
       disabled={disabled}
       aria-disabled={disabled}
@@ -279,15 +289,14 @@ export function FluidTextInput({
         as="button"
         type="button"
         ref={buttonRef}
-        data-fluid-text-button
+        data-fluid-text-input-button
         onClick={handleButtonClick}
         visibility={buttonVisibility}
         placeholder={hasPlaceholder ? "true" : "false"}
         aria-hidden={isEditing}
         disabled={disabled}
-        {...domProps}
       >
-        <FluidTextInputButtonText data-fluid-text-button-text>
+        <FluidTextInputButtonText data-fluid-text-input-button-text>
           {displayValue}
         </FluidTextInputButtonText>
       </FluidTextInputButton>
@@ -307,32 +316,9 @@ export function FluidTextInput({
         disabled={disabled}
         readOnly={readOnly}
         aria-hidden={!isEditing}
-        data-fluid-text-input
+        data-fluid-text-input-input
         visibility={inputVisibility}
       />
     </FluidTextInputRoot>
   );
-}
-
-export default function App() {
-  const [value, setValue] = React.useState<string | undefined>(
-    "This is some really long text",
-  );
-
-  return (
-    <div className="App">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          lineHeight: 1.25,
-          alignItems: "center",
-        }}
-      >
-        <span>Drafts /</span>
-        <FluidTextInput value={value} onSave={setValue} />
-        <span>/ More</span>
-      </div>
-    </div>
-  );
-}
+}) as FluidTextInputComponent;
