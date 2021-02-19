@@ -1,17 +1,39 @@
-import type { ReactElement } from "react";
-import { useRecoilValue } from "recoil";
+import type { ChangeEvent, ReactElement } from "react";
+import { useRecoilState } from "recoil";
 import { Field, FieldGroup, Form, InputField, Switch } from "components";
 
-import { titleState } from "./EditorState";
+import { slugState, titleState } from "./EditorState";
 
 export default function EditorDetailsFormView(): ReactElement {
-  const title = useRecoilValue(titleState);
+  const [title, setTitle] = useRecoilState(titleState);
+  const [slug, setSlug] = useRecoilState(slugState);
+
+  const handleChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
+  };
+
+  const handleChangeSlug = (event: ChangeEvent<HTMLInputElement>) => {
+    setSlug(event.target.value);
+  };
 
   return (
     <Form>
       <FieldGroup>
-        <InputField label="Title" id="title" type="text" defaultValue={title} />
-        <InputField label="Slug" id="slug" type="text" placeholder="heading" />
+        <InputField
+          label="Title"
+          id="title"
+          type="text"
+          defaultValue={title}
+          onChange={handleChangeTitle}
+        />
+        <InputField
+          label="Slug"
+          id="slug"
+          type="text"
+          value={slug}
+          onChange={handleChangeSlug}
+          placeholder="slug"
+        />
         <InputField label="Publish Date" id="publishDate" type="date" />
         <Field label="Published">
           <Switch defaultChecked={false} />

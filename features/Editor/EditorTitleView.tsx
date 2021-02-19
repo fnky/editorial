@@ -1,5 +1,5 @@
 import { ReactElement, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import { css, styled } from "stitches.config";
 import {
@@ -96,18 +96,19 @@ const EditorDetailsPopover = () => {
   );
 };
 
-export default function EditorTitleView(): ReactElement {
-  const title = useRecoilValue(titleState);
+export function Title() {
+  const [title, setTitle] = useRecoilState(titleState);
 
+  return <FluidTextInput value={title} onSave={setTitle} />;
+}
+
+export default function EditorTitleView(): ReactElement {
   return (
     <DocumentTitle
       className="EditorDocumentTitle"
       title={
         <Flex css={{ display: "flex", alignItems: "center" }}>
-          {/* <Button title={title} variant="ghost" css={titleButtonCss}>
-            <TitleButtonInner>{title}</TitleButtonInner>
-          </Button> */}
-          <FluidTextInput value={title} />
+          <Title />
           <EditorDetailsPopover />
         </Flex>
       }
