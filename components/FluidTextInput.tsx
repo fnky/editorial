@@ -15,8 +15,8 @@ type Action =
   | { type: "SET_VALUE"; value: string }
   | { type: "CANCEL"; value: string };
 
-const init = (value: string): State => ({
-  inputValue: value,
+const init = (value?: string): State => ({
+  inputValue: value || "",
   isEditing: false,
 });
 
@@ -26,21 +26,6 @@ const reducer = createReducer<State, Action>({
   SET_VALUE: (state, action) => ({ ...state, inputValue: action.value }),
   CANCEL: (_, action) => init(action.value),
 });
-
-type FluidTextInputOwnProps = {
-  id?: string;
-  name?: string;
-  className?: string;
-  value?: string;
-  placeholder?: string;
-  disabled?: boolean;
-  readOnly?: boolean;
-  autoFocus?: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  onSave?: (newValue: string) => void;
-  onCancel?: () => void;
-  "aria-labelledby"?: string;
-};
 
 const FluidTextInputRoot = styled("fieldset", {
   position: "relative",
@@ -157,11 +142,28 @@ const FluidTextInputInput = styled(FluidTextInputControl, {
   },
 });
 
+type FluidTextInputOwnProps = {
+  id?: string;
+  name?: string;
+  className?: string;
+  value?: string;
+  defaultValue?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  readOnly?: boolean;
+  autoFocus?: boolean;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onSave?: (newValue: string) => void;
+  onCancel?: () => void;
+  "aria-labelledby"?: string;
+};
+
 export function FluidTextInput({
   id,
   className,
   name,
   value,
+  defaultValue,
   placeholder,
   disabled,
   readOnly,
@@ -171,13 +173,18 @@ export function FluidTextInput({
   onCancel,
   ...domProps
 }: FluidTextInputOwnProps) {
+  const intialValueRef = React.useRef<string | undefined>(value);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const rootRef = React.useRef<HTMLFieldSetElement>(null);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const [{ inputValue, isEditing }, dispatch] = React.useReducer(
     reducer,
-    init(value || ""),
+    init(value),
   );
+
+  React.useEffect(() => {
+    dispatch({ type: "SET_VALUE", value: value || "" });
+  }, [value]);
 
   const displayValue = inputValue || placeholder;
   const hasPlaceholder = placeholder && !inputValue;
@@ -187,14 +194,17 @@ export function FluidTextInput({
 
   const commitChanges = () => {
     onSave?.(inputValue);
+    console.log("save");
     dispatch({ type: "FINISH_EDIT" });
+    intialValueRef.current = inputValue || "";
     inputRef.current?.blur();
     buttonRef.current?.focus();
   };
 
   const cancelChanges = () => {
     onCancel?.();
-    dispatch({ type: "CANCEL", value: value ?? "" });
+    console.log(intialValueRef.current);
+    dispatch({ type: "SET_VALUE", value: intialValueRef.current || "" });
     inputRef.current?.blur();
     buttonRef.current?.focus();
   };
@@ -233,9 +243,8 @@ export function FluidTextInput({
     dispatch({ type: "BEGIN_EDIT" });
   };
 
-  const handleInputBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleInputBlur = () => {
     inputRef.current?.setSelectionRange(inputValue.length, inputValue.length);
-    commitChanges();
   };
 
   useOnClickOutside(buttonRef, commitChanges);
