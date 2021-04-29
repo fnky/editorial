@@ -3,7 +3,7 @@
 Editorial is a blog and editor interface for my personal website. It's powered
 by Next.js, Recoil, rich-markdown-editor and more.
 
-It is still under development and lacks a few features.
+> It is still under development and doesn't work as intended yet.
 
 ![A screenshot of Editorial](preview.png)
 
