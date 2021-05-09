@@ -19,7 +19,7 @@ const HeaderRoot = styled(SHADOW_HEADER_DEFAULT_TAG, {
   zIndex: 1,
   WebkitBackfaceVisibility: "hidden",
 
-  "::before": {
+  "&::before": {
     boxSizing: "border-box",
     content: '""',
     display: "block",
@@ -30,7 +30,7 @@ const HeaderRoot = styled(SHADOW_HEADER_DEFAULT_TAG, {
     boxShadow: "0 1px 8px 0 rgba(0, 0, 12, 0.16)",
   },
 
-  "::after": {
+  "&::after": {
     boxSizing: "border-box",
     content: '""',
     display: "block",
