@@ -1,6 +1,6 @@
 import { PostStatus } from "@prisma/client";
 import { inputObjectType, mutationType, nonNull } from "nexus";
-import slugify from "utils/slugify";
+import slugify from "../utils/slugify";
 
 const CreateTagInput = inputObjectType({
   name: "CreateTagInput",
@@ -22,18 +22,10 @@ const CreateDraftInput = inputObjectType({
     t.nonNull.string("body");
     t.string("slug");
     t.list.field("tags", {
-      type: CreateTagInput,
+      type: nonNull(CreateTagInput),
     });
   },
 });
-
-// TODO: Find a way to get the fields created in the definition of the input.
-type CraftDraftInput = {
-  title: string;
-  body: string;
-  slug?: string;
-  tags?: CreateTagInput[];
-};
 
 export const Mutation = mutationType({
   definition(t) {
@@ -44,12 +36,9 @@ export const Mutation = mutationType({
     t.field("createDraft", {
       type: "Post",
       args: {
-        // input: arg({
-        //   type: CreateDraftInput,
-        // }),
         input: nonNull(CreateDraftInput.asArg()),
       },
-      resolve(_root, args: { input: CraftDraftInput }, context) {
+      resolve(_root, args, context) {
         return context.prisma.post.create({
           data: {
             title: args.input.title,
@@ -60,12 +49,10 @@ export const Mutation = mutationType({
                 : slugify(args.input.title),
             status: PostStatus.DRAFT,
             tags: {
-              connectOrCreate: args.input.tags
-                ? args.input.tags.map((tag) => ({
-                    where: { slug: tag.slug },
-                    create: { label: tag.label, slug: tag.slug },
-                  }))
-                : undefined,
+              connectOrCreate: args.input.tags?.map((tag) => ({
+                where: { slug: tag.slug },
+                create: { label: tag.label, slug: tag.slug },
+              })),
             },
           },
         });

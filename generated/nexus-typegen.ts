@@ -22,7 +22,7 @@ export interface NexusGenInputs {
   CreateDraftInput: { // input type
     body: string; // String!
     slug?: string | null; // String
-    tags?: Array<NexusGenInputs['CreateTagInput'] | null> | null; // [CreateTagInput]
+    tags?: NexusGenInputs['CreateTagInput'][] | null; // [CreateTagInput!]
     title: string; // String!
   }
   CreateTagInput: { // input type
@@ -174,10 +174,20 @@ export interface NexusGenInputs {
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
   }
+  TagCreateManyPostInput: { // input type
+    id?: string | null; // String
+    label: string; // String!
+    slug: string; // String!
+  }
+  TagCreateManyPostInputEnvelope: { // input type
+    data?: NexusGenInputs['TagCreateManyPostInput'][] | null; // [TagCreateManyPostInput!]
+    skipDuplicates?: boolean | null; // Boolean
+  }
   TagCreateNestedManyWithoutPostInput: { // input type
     connect?: NexusGenInputs['TagWhereUniqueInput'][] | null; // [TagWhereUniqueInput!]
     connectOrCreate?: NexusGenInputs['TagCreateOrConnectWithoutPostInput'][] | null; // [TagCreateOrConnectWithoutPostInput!]
     create?: NexusGenInputs['TagCreateWithoutPostInput'][] | null; // [TagCreateWithoutPostInput!]
+    createMany?: NexusGenInputs['TagCreateManyPostInputEnvelope'] | null; // TagCreateManyPostInputEnvelope
   }
   TagCreateOrConnectWithoutPostInput: { // input type
     create: NexusGenInputs['TagCreateWithoutPostInput']; // TagCreateWithoutPostInput!
