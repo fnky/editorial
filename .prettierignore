@@ -1,37 +1,33 @@
-# dependencies
-/node_modules
+# Prettier is setup to run on everything by default to ensure maximum prettiness
+# However, prettier doesn't support every file type, and some files dont need to
+# be pretty. So they are "ignored" using glob patterns in this file in a similar
+# fashion to .gitignore
+
+# third party deps dont need formatting
+node_modules
+package-lock.json
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# prisma
-.prisma
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# vercel
+# nor do built things
+dist
+.temp
+.next
 .vercel
+.prisma
+generated
 
+# tests
+.nyc_output
+coverage
+
+# these things are just not supported by prettier
 pgdata
+.*ignore
+.*config
+.*rc
+*.png
+*.svg
+*.jpeg
+*.jpg
+*.ico
