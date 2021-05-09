@@ -18,7 +18,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@prisma/client": "^2.16.1",
+    "@prisma/client": "^2.22.1",
     "@radix-ui/react-icons": "^1.0.3",
     "@radix-ui/react-polymorphic": "^0.0.11",
     "@radix-ui/react-popover": "^0.0.16",
@@ -27,8 +27,7 @@
     "@radix-ui/utils": "^0.0.3",
     "@stitches/core": "^0.1.9",
     "@stitches/react": "^0.1.9",
-    "@types/lodash": "^4.14.168",
-    "apollo-server-micro": "^2.21.0",
+    "apollo-server-micro": "^2.24.0",
     "core-js": "3.8.3",
     "faker": "^5.5.3",
     "framer-motion": "^4.1.13",
@@ -53,6 +52,7 @@
   },
   "devDependencies": {
     "@types/faker": "^5.1.6",
+    "@types/lodash": "^4.14.168",
     "@types/node": "14",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.3",
