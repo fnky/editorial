@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef } from "react";
 
 /**
- * Takes a list of callbacks and returns a new callback that will call all given callbacks in sequence.
+ * Takes a list of callbacks and returns a new callback that will call all given
+ * callbacks in sequence.
  *
  * @param callbacks List of callbacks
  */

@@ -62,13 +62,10 @@ export default function EditorView(): ReactElement {
     toast(message, { icon: "ⓘ" });
   }, []);
 
-  const { callback: persistChanges } = useDebouncedCallback(
-    (getValue: () => string) => {
-      const text = getValue();
-      setContent(text);
-    },
-    250,
-  );
+  const persistChanges = useDebouncedCallback((getValue: () => string) => {
+    const text = getValue();
+    setContent(text);
+  }, 250);
 
   const handleMouseEnter = useCallback(() => {
     setIsHoveringToolBar(true);
@@ -78,11 +75,14 @@ export default function EditorView(): ReactElement {
     setIsHoveringToolBar(false);
   }, []);
 
-  const hideToolBar = useCallback(() => {
-    if (!isHoveringToolBar) {
-      setIsToolBarVisible(false);
-    }
-  }, [isHoveringToolBar]);
+  const hideToolBar = useCallback(
+    (_getValue: () => string) => {
+      if (!isHoveringToolBar) {
+        setIsToolBarVisible(false);
+      }
+    },
+    [isHoveringToolBar],
+  );
 
   useEffect(() => {
     if (!isToolBarVisible && isHoveringToolBar) {
