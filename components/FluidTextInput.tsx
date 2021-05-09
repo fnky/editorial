@@ -73,6 +73,7 @@ const FluidTextInputControl = styled("div", {
   justifyContent: "center",
   appearance: "none",
   fontFamily: "inherit",
+  fontWeight: "inherit",
   fontSize: "1em",
   padding: "2px 4px",
   margin: "0",
@@ -105,6 +106,9 @@ const FluidTextInputButton = styled(FluidTextInputControl, {
   cursor: "pointer",
   userSelect: "none",
   font: "revert",
+  fontFamily: "inherit",
+  fontSize: "inherit",
+  fontWeight: "inherit",
 
   ":disabled": {
     color: "$gray700",
