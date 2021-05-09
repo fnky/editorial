@@ -1,49 +1,49 @@
 import { theme as defaultTheme } from "rich-markdown-editor";
-import { theme, darkTheme } from "stitches.config";
+import { theme } from "stitches.config";
 
 type DefaultTheme = typeof defaultTheme;
 
 const colors = {
-  almostBlack: theme.colors.$hiContrast,
-  lightBlack: theme.colors.$gray800,
-  almostWhite: theme.colors.$gray100,
-  white: theme.colors.$loContrast,
+  almostBlack: theme.colors.hiContrast,
+  lightBlack: theme.colors.gray800,
+  almostWhite: theme.colors.gray100,
+  white: theme.colors.loContrast,
   white10: "rgba(255, 255, 255, 0.1)",
-  black: theme.colors.$hiContrast,
+  black: theme.colors.hiContrast,
   black10: "rgba(0, 0, 0, 0.1)",
-  primary: theme.colors.$blue900,
-  greyLight: theme.colors.$gray200,
-  grey: theme.colors.$gray400,
-  greyMid: theme.colors.$gray600,
-  greyDark: theme.colors.$gray700,
+  primary: theme.colors.blue900,
+  greyLight: theme.colors.gray200,
+  grey: theme.colors.gray400,
+  greyMid: theme.colors.gray600,
+  greyDark: theme.colors.gray700,
 };
 
 export const base = {
   ...colors,
-  fontFamily: theme.fonts.$serif,
-  fontFamilyMono: theme.fonts.$mono,
+  fontFamily: theme.fonts.serif,
+  fontFamilyMono: theme.fonts.mono,
   fontWeight: 400,
   zIndex: 100,
 
   link: colors.primary,
   textLight: colors.white,
-  textHighlight: theme.colors.$yellow300,
+  textHighlight: theme.colors.yellow300,
   textHighlightForeground: colors.black,
-  placeholder: theme.colors.$gray700,
-  textSecondary: theme.colors.$gray800,
+  placeholder: theme.colors.gray700,
+  textSecondary: theme.colors.gray800,
   selected: colors.primary,
 
-  codeComment: theme.colors.$gray800,
-  codePunctuation: theme.colors.$gray900,
-  codeNumber: theme.colors.$orange900,
-  codeProperty: theme.colors.$bronze800,
-  codeTag: theme.colors.$blue800,
-  codeString: theme.colors.$blue900,
-  codeSelector: theme.colors.$blue800,
-  codeAttr: theme.colors.$bronze800,
+  codeComment: theme.colors.gray800,
+  codePunctuation: theme.colors.gray900,
+  codeNumber: theme.colors.orange900,
+  codeProperty: theme.colors.bronze800,
+  codeTag: theme.colors.blue800,
+  codeString: theme.colors.blue900,
+  codeSelector: theme.colors.blue800,
+  codeAttr: theme.colors.bronze800,
   codeEntity: "#22a2c9",
-  codeKeyword: theme.colors.$red900,
-  codeFunction: theme.colors.$purple900,
+  codeKeyword: theme.colors.red900,
+  codeFunction: theme.colors.purple900,
   codeStatement: "#22a2c9",
   codePlaceholder: "#3d8fd1",
   codeInserted: "#202746",
@@ -57,11 +57,11 @@ export const base = {
   blockToolbarHoverBackground: colors.greyLight,
   blockToolbarDivider: colors.greyMid,
 
-  noticeInfoBackground: theme.colors.$orange500,
+  noticeInfoBackground: theme.colors.orange500,
   noticeInfoText: colors.almostBlack,
-  noticeTipBackground: theme.colors.$blue900,
+  noticeTipBackground: theme.colors.blue900,
   noticeTipText: colors.white,
-  noticeWarningBackground: theme.colors.$red700,
+  noticeWarningBackground: theme.colors.red700,
   noticeWarningText: colors.white,
 };
 
@@ -80,7 +80,7 @@ export const light: DefaultTheme = {
 
   tableDivider: colors.greyMid,
   tableSelected: colors.primary,
-  tableSelectedBackground: theme.colors.$blue200,
+  tableSelectedBackground: theme.colors.blue200,
 
   quote: colors.greyLight,
   codeBackground: colors.greyLight,
@@ -98,7 +98,7 @@ export const dark = {
   background: colors.almostBlack,
   text: colors.almostWhite,
   textHighlightForeground: colors.almostWhite,
-  textHighlight: darkTheme.$orange400,
+  textHighlight: theme.colors.orange400,
   code: colors.almostWhite,
   cursor: colors.white,
   divider: "#4E5C6E",
