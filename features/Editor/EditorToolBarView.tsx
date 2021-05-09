@@ -18,34 +18,34 @@ import EditorMenuView from "./EditorMenuView";
 export const ToolBarRoot = styled(ShadowHeaderRoot, {
   userSelect: "none",
 
-  "::before": {
+  "&::before": {
     transition: "opacity 0 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
   },
 
-  "::after": {
+  "&::after": {
     transition: "opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
     opacity: 1,
   },
 
-  ":hover::after": {
+  "&:hover::after": {
     opacity: 0,
   },
 
   variants: {
     visibility: {
       hidden: {
-        "::before": {
+        "&::before": {
           opacity: 0,
         },
-        "::after": {
+        "&::after": {
           opacity: 0,
         },
       },
       visible: {
-        "::before": {
+        "&::before": {
           opacity: 1,
         },
-        "::after": {
+        "&::after": {
           opacity: 1,
         },
       },

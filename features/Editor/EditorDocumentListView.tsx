@@ -47,12 +47,12 @@ const ListItem = styled("div", {
     "&:active": {
       color: "inherit",
       // backgroundColor: "$gray100",
-      // boxShadow: "inset 0 0 0 1px $gray700",
+      // boxShadow: "inset 0 0 0 1px $colors$gray700",
     },
 
     "&:focus": {
       backgroundColor: "$gray200",
-      boxShadow: "inset 0 0 0 1px $gray700, 0 0 0 1px $gray700",
+      boxShadow: "inset 0 0 0 1px $colors$gray700, 0 0 0 1px $colors$gray700",
       color: "red",
     },
   },

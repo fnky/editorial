@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, StitchesProps, StitchesVariants } from "stitches.config";
+import { styled, CSS, StitchesVariants } from "stitches.config";
 
 const StyledThumb = styled(SwitchPrimitive.Thumb, {
   position: "absolute",
@@ -47,13 +47,13 @@ const StyledSwitch = styled(SwitchPrimitive.Root, {
   borderRadius: "$pill",
   position: "relative",
   "&:focus": {
-    boxShadow: "0 0 0 2px $gray700",
+    boxShadow: "0 0 0 2px $colors$gray700",
   },
 
   '&[data-state="checked"]': {
     backgroundColor: "$blue800",
     "&:focus": {
-      boxShadow: "0 0 0 2px $blue700",
+      boxShadow: "0 0 0 2px $colors$blue700",
     },
   },
 
@@ -79,7 +79,7 @@ const StyledSwitch = styled(SwitchPrimitive.Root, {
   },
 });
 
-type SwitchCSSProp = Pick<StitchesProps<typeof StyledSwitch>, "css">;
+type SwitchCSSProp = { css?: CSS };
 type SwitchVariants = StitchesVariants<typeof StyledSwitch>;
 type SwitchOwnProps = Polymorphic.OwnProps<typeof SwitchPrimitive.Root> &
   SwitchCSSProp &

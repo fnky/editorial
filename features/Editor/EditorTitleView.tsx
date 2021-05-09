@@ -24,7 +24,7 @@ const ArrowTrigger = styled(PopoverTrigger, {
   marginLeft: "$1",
 
   "&:focus": {
-    boxShadow: "inset 0 0 0 1px $gray700, 0 0 0 1px $gray700",
+    boxShadow: "inset 0 0 0 1px $colors$gray700, 0 0 0 1px $colors$gray700",
   },
   ":disabled": {
     backgroundColor: "$gray100",
@@ -34,11 +34,11 @@ const ArrowTrigger = styled(PopoverTrigger, {
 
   "&:hover": {
     color: "$hiContrast",
-    boxShadow: "inset 0 0 0 1px $gray600",
+    boxShadow: "inset 0 0 0 1px $colors$gray600",
   },
   "&:active": {
     borderColor: "$gray700",
-    boxShadow: "inset 0 0 0 1px $gray700",
+    boxShadow: "inset 0 0 0 1px $colors$gray700",
     color: "$hiContrast",
     backgroundColor: "$gray200",
   },
@@ -46,7 +46,7 @@ const ArrowTrigger = styled(PopoverTrigger, {
     state: {
       active: {
         borderColor: "$gray700",
-        boxShadow: "inset 0 0 0 1px $gray700",
+        boxShadow: "inset 0 0 0 1px $colors$gray700",
         color: "$hiContrast",
         backgroundColor: "$gray200",
       },

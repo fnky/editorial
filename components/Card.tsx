@@ -1,6 +1,6 @@
 import React from "react";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, StitchesProps, StitchesVariants } from "stitches.config";
+import { styled, CSS, StitchesVariants } from "stitches.config";
 
 const DEFAULT_TAG = "div";
 
@@ -36,7 +36,8 @@ const StyledCard = styled(DEFAULT_TAG, {
         },
         "&:focus": {
           "&::before": {
-            boxShadow: "inset 0 0 0 1px $blue700, 0 0 0 1px $blue700",
+            boxShadow:
+              "inset 0 0 0 1px $colors$blue700, 0 0 0 1px $colors$blue700",
           },
         },
       },
@@ -54,7 +55,7 @@ const StyledCard = styled(DEFAULT_TAG, {
         "&:hover": {
           backgroundColor: "$panel",
           transform: "translateY(-2px)",
-          "::before": {
+          "&::before": {
             opacity: "1",
           },
         },
@@ -67,14 +68,15 @@ const StyledCard = styled(DEFAULT_TAG, {
           },
         },
         "&:focus": {
-          boxShadow: "inset 0 0 0 1px $blue700, 0 0 0 1px $blue700",
+          boxShadow:
+            "inset 0 0 0 1px $colors$blue700, 0 0 0 1px $colors$blue700",
         },
       },
     },
   },
 });
 
-type CardCSSProp = Pick<StitchesProps<typeof StyledCard>, "css">;
+type CardCSSProp = { css?: CSS };
 type CardVariants = StitchesVariants<typeof StyledCard>;
 type CardOwnProps = CardCSSProp & CardVariants;
 

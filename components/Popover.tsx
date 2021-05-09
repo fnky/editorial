@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode, ComponentProps } from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, StitchesProps } from "stitches.config";
+import { styled, CSS } from "stitches.config";
 import { slideDown, slideUp } from "./keyframes";
 import { Box } from "./";
 
@@ -36,7 +36,7 @@ export const PopoverArrow = styled(PopoverPrimitive.Arrow, {
   stroke: "rgba(0, 0, 0, .16)",
 });
 
-type PopoverContentCSSProp = Pick<StitchesProps<typeof StyledContent>, "css">;
+type PopoverContentCSSProp = { css?: CSS };
 // type PopoverContentVariants = StitchesVariants<typeof StyledContent>;
 type PopoverContentOwnProps = PopoverContentCSSProp &
   Polymorphic.OwnProps<typeof PopoverPrimitive.Content> & {

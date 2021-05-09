@@ -1,6 +1,6 @@
 import React from "react";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, StitchesProps, StitchesVariants } from "stitches.config";
+import { styled, CSS, StitchesVariants } from "stitches.config";
 
 const DEFAULT_TAG = "button";
 
@@ -18,9 +18,11 @@ const StyledButton = styled(DEFAULT_TAG, {
   textDecoration: "none",
   userSelect: "none",
   WebkitTapHighlightColor: "rgba(0,0,0,0)",
+
   "&::before": {
     boxSizing: "border-box",
   },
+
   "&::after": {
     boxSizing: "border-box",
   },
@@ -28,7 +30,7 @@ const StyledButton = styled(DEFAULT_TAG, {
   // Custom
   backgroundColor: "$loContrast",
   border: "none",
-  boxShadow: "inset 0 0 0 1px $gray600",
+  boxShadow: "inset 0 0 0 1px $colors$gray600",
   borderRadius: "$2",
   color: "$hiContrast",
   height: "$5",
@@ -43,18 +45,21 @@ const StyledButton = styled(DEFAULT_TAG, {
   transitionProperty: "color box-shadow background-color",
 
   "&:hover": {
-    boxShadow: "inset 0 0 0 1px $gray700",
+    boxShadow: "inset 0 0 0 1px $colors$gray700",
   },
+
   "&:active": {
     backgroundColor: "$gray100",
-    boxShadow: "inset 0 0 0 1px $gray700",
+    boxShadow: "inset 0 0 0 1px $colors$gray700",
   },
+
   "&:focus": {
-    boxShadow: "inset 0 0 0 1px $gray700, 0 0 0 1px $gray700",
+    boxShadow: "inset 0 0 0 1px $colors$gray700, 0 0 0 1px $colors$gray700",
   },
-  ":disabled": {
+
+  "&:disabled": {
     backgroundColor: "$gray100",
-    boxShadow: "inset 0 0 0 1px $gray600",
+    boxShadow: "inset 0 0 0 1px $colors$gray600",
     color: "$gray700",
     pointerEvents: "none",
   },
@@ -75,46 +80,48 @@ const StyledButton = styled(DEFAULT_TAG, {
     variant: {
       blue: {
         backgroundColor: "$blue100",
-        boxShadow: "inset 0 0 0 1px $blue600",
+        boxShadow: "inset 0 0 0 1px $colors$blue600",
         color: "$blue900",
         "&:hover": {
-          boxShadow: "inset 0 0 0 1px $blue700",
+          boxShadow: "inset 0 0 0 1px $colors$blue700",
         },
         "&:active": {
           backgroundColor: "$blue200",
-          boxShadow: "inset 0 0 0 1px $blue700",
+          boxShadow: "inset 0 0 0 1px $colors$blue700",
         },
         "&:focus": {
-          boxShadow: "inset 0 0 0 1px $blue700, 0 0 0 1px $blue700",
+          boxShadow:
+            "inset 0 0 0 1px $colors$blue700, 0 0 0 1px $colors$blue700",
         },
       },
       green: {
         backgroundColor: "$green100",
-        boxShadow: "inset 0 0 0 1px $green600",
+        boxShadow: "inset 0 0 0 1px $colors$green600",
         color: "$green900",
         "&:hover": {
-          boxShadow: "inset 0 0 0 1px $green700",
+          boxShadow: "inset 0 0 0 1px $colors$green700",
         },
         "&:active": {
           backgroundColor: "$green200",
-          boxShadow: "inset 0 0 0 1px $green700",
+          boxShadow: "inset 0 0 0 1px $colors$green700",
         },
         "&:focus": {
-          boxShadow: "inset 0 0 0 1px $green700, 0 0 0 1px $green700",
+          boxShadow:
+            "inset 0 0 0 1px $colors$green700, 0 0 0 1px $colors$green700",
         },
       },
       red: {
         color: "$red900",
         "&:hover": {
           backgroundColor: "$red100",
-          boxShadow: "inset 0 0 0 1px $red700",
+          boxShadow: "inset 0 0 0 1px $colors$red700",
         },
         "&:active": {
           backgroundColor: "$red200",
-          boxShadow: "inset 0 0 0 1px $red700",
+          boxShadow: "inset 0 0 0 1px $colors$red700",
         },
         "&:focus": {
-          boxShadow: "inset 0 0 0 1px $red700, 0 0 0 1px $red700",
+          boxShadow: "inset 0 0 0 1px $colors$red700, 0 0 0 1px $colors$red700",
         },
       },
       ghost: {
@@ -201,42 +208,48 @@ const StyledButton = styled(DEFAULT_TAG, {
     state: {
       active: {
         backgroundColor: "$gray300",
-        boxShadow: "inset 0 0 0 1px $gray700",
+        boxShadow: "inset 0 0 0 1px $colors$gray700",
         color: "$gray900",
         "&:hover": {
           backgroundColor: "$gray400",
-          boxShadow: "inset 0 0 0 1px $gray700",
+          boxShadow: "inset 0 0 0 1px $colors$gray700",
         },
         "&:active": {
           backgroundColor: "$gray400",
         },
         "&:focus": {
-          boxShadow: "inset 0 0 0 1px $gray700, 0 0 0 1px $gray700",
+          boxShadow:
+            "inset 0 0 0 1px $colors$gray700, 0 0 0 1px $colors$gray700",
         },
       },
       waiting: {
         backgroundColor: "$gray300",
-        boxShadow: "inset 0 0 0 1px $gray700",
+        boxShadow: "inset 0 0 0 1px $colors$gray700",
         color: "transparent",
         pointerEvents: "none",
         "&:hover": {
           backgroundColor: "$gray400",
-          boxShadow: "inset 0 0 0 1px $gray700",
+          boxShadow: "inset 0 0 0 1px $colors$gray700",
         },
         "&:active": {
           backgroundColor: "$gray400",
         },
         "&:focus": {
-          boxShadow: "inset 0 0 0 1px $gray700",
+          boxShadow: "inset 0 0 0 1px $colors$gray700",
         },
       },
     },
   },
+  defaultVariants: {
+    size: "1",
+    variant: "ghost",
+  },
 });
 
-type ButtonCSSProp = Pick<StitchesProps<typeof StyledButton>, "css">;
-type ButtonVariants = StitchesVariants<typeof StyledButton>;
-type ButtonOwnProps = ButtonCSSProp & ButtonVariants;
+type ButtonCSSProp = { css?: CSS };
+// TODO: Remove omit fix when this is merged https://github.com/modulz/stitches/issues/421
+type ButtonVariants = Omit<StitchesVariants<typeof StyledButton>, "size">;
+type ButtonOwnProps = ButtonCSSProp & ButtonVariants & { size?: any };
 
 type ButtonComponent = Polymorphic.ForwardRefComponent<
   typeof DEFAULT_TAG,

@@ -1,6 +1,6 @@
 import * as React from "react";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, StitchesProps, StitchesVariants } from "stitches.config";
+import { styled, CSS, StitchesVariants } from "stitches.config";
 import useResizeObserver from "use-resize-observer";
 import { createReducer } from "utils/createReducer";
 import { useOnClickOutside } from "hooks/useOnClickOutside";
@@ -91,7 +91,7 @@ const FluidTextInputControl = styled("div", {
   fontVariantNumeric: "tabular-nums",
 
   "&:focus": {
-    boxShadow: "inset 0 0 0 1px $gray700, 0 0 0 1px $gray700",
+    boxShadow: "inset 0 0 0 1px $colors$gray700, 0 0 0 1px $colors$gray700",
   },
 
   variants: {
@@ -160,10 +160,7 @@ type FluidTextInputProps = {
   "aria-labelledby"?: string;
 };
 
-type FluidTextInputCSSProp = Pick<
-  StitchesProps<typeof FluidTextInputRoot>,
-  "css"
->;
+type FluidTextInputCSSProp = { css?: CSS };
 type FluidTextInputVariants = StitchesVariants<typeof FluidTextInputRoot>;
 type FluidTextInputOwnProps = FluidTextInputProps &
   FluidTextInputCSSProp &
