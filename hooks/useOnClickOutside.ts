@@ -1,11 +1,12 @@
-import { useEffect, useRef, RefObject } from "react";
+import type { RefObject } from "react";
+import { useEffect, useRef } from "react";
 
 type ClickOutsideHandler = (event: MouseEvent | TouchEvent) => void;
 
 export function useOnClickOutside<T extends HTMLElement>(
   ref: RefObject<T>,
   handler: ClickOutsideHandler,
-) {
+): void {
   const savedCallbackHandler = useRef<ClickOutsideHandler>();
 
   useEffect(() => {
@@ -15,7 +16,7 @@ export function useOnClickOutside<T extends HTMLElement>(
   useEffect(() => {
     const target = ref.current;
 
-    const listener = (event: MouseEvent | TouchEvent) => {
+    const listener = (event: MouseEvent | TouchEvent): void => {
       // Do nothing if clicking ref's element or descendent elements
       if (!target || target.contains(event.target as HTMLElement)) {
         return;

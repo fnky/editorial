@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention, destructuring/in-params */
 import { atom, DefaultValue, selector } from "recoil";
 import { recoilPersist } from "recoil-persist";
 import { parser, serializer } from "rich-markdown-editor/dist/server";
@@ -41,7 +42,7 @@ export const titleState = atom({
           // pull the title of the document
           return serializer.serialize(firstNode, {});
         }
-      } catch (e) {
+      } catch {
         return "Untitled";
       }
 
@@ -72,18 +73,18 @@ export const slugState = selector<string>({
   },
 });
 
-export const readOnlyState = atom({
+export const readOnlyState = atom<boolean>({
   key: "ReadOnly",
   default: false,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const darkState = atom({
+export const darkState = atom<boolean>({
   key: "Dark",
   default: true,
 });
 
-export const templateState = atom({
+export const templateState = atom<boolean>({
   key: "Template",
   default: false,
 });

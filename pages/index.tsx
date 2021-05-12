@@ -1,11 +1,13 @@
 import type { ReactElement } from "react";
-import Page from "layouts/Page";
 import { ShadowHeader } from "components";
+import Page from "layouts/Page";
 
-const IndexPage = (): ReactElement => (
-  <Page title="Home">
-    <ShadowHeader>Robert</ShadowHeader>
-  </Page>
-);
+function IndexPage(): ReactElement {
+  return (
+    <Page title="Home">
+      <ShadowHeader>Robert</ShadowHeader>
+    </Page>
+  );
+}
 
 export default IndexPage;

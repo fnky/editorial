@@ -4,8 +4,12 @@ export function useOffline(): boolean {
   const [isOffline, setIsOffline] = useState(false);
 
   useEffect(() => {
-    const handleOffline = () => setIsOffline(true);
-    const handleOnline = () => setIsOffline(false);
+    const handleOffline = (): void => {
+      setIsOffline(true);
+    };
+    const handleOnline = (): void => {
+      setIsOffline(false);
+    };
 
     window.addEventListener("offline", handleOffline);
     window.addEventListener("online", handleOnline);

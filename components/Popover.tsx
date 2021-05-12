@@ -1,15 +1,21 @@
-import { forwardRef, ReactNode, ComponentProps } from "react";
+/* eslint-disable react/destructuring-assignment, destructuring/in-params, @typescript-eslint/strict-boolean-expressions */
+import * as React from "react";
+import { forwardRef } from "react";
+import type * as Polymorphic from "@radix-ui/react-polymorphic";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
-import * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, CSS } from "stitches.config";
+import type { CSS } from "stitches.config";
+import { styled } from "stitches.config";
 import { slideDown, slideUp } from "./keyframes";
 import { Box } from "./";
 
-type PopoverProps = ComponentProps<typeof PopoverPrimitive.Root> & {
-  children: ReactNode;
+type PopoverProps = React.ComponentProps<typeof PopoverPrimitive.Root> & {
+  children: React.ReactNode;
 };
 
-export function Popover({ children, ...props }: PopoverProps) {
+export function Popover({
+  children,
+  ...props
+}: PopoverProps): React.ReactElement {
   return <PopoverPrimitive.Root {...props}>{children}</PopoverPrimitive.Root>;
 }
 
@@ -36,9 +42,11 @@ export const PopoverArrow = styled(PopoverPrimitive.Arrow, {
   stroke: "rgba(0, 0, 0, .16)",
 });
 
-type PopoverContentCSSProp = { css?: CSS };
+interface PopoverContentCSSProperty {
+  css?: CSS;
+}
 // type PopoverContentVariants = StitchesVariants<typeof StyledContent>;
-type PopoverContentOwnProps = PopoverContentCSSProp &
+type PopoverContentOwnProps = PopoverContentCSSProperty &
   Polymorphic.OwnProps<typeof PopoverPrimitive.Content> & {
     hideArrow?: boolean;
   };
@@ -52,7 +60,6 @@ export const PopoverContent = forwardRef(
   ({ children, hideArrow, ...props }, forwardedRef) => (
     <StyledContent {...props} ref={forwardedRef}>
       {children}
-      {/* <PopoverArrow /> */}
       {!hideArrow && (
         <Box css={{ color: "$panel" }}>
           <PopoverPrimitive.Arrow
@@ -66,3 +73,5 @@ export const PopoverContent = forwardRef(
     </StyledContent>
   ),
 ) as PopoverContentComponent;
+
+PopoverContent.displayName = "PopoverContent";

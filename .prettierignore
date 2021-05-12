@@ -25,7 +25,6 @@ coverage
 pgdata
 .*ignore
 .*config
-.*rc
 *.png
 *.svg
 *.jpeg

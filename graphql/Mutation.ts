@@ -10,10 +10,10 @@ const CreateTagInput = inputObjectType({
   },
 });
 
-type CreateTagInput = {
+interface CreateTagInput {
   slug: string;
   label: string;
-};
+}
 
 const CreateDraftInput = inputObjectType({
   name: "CreateDraftInput",

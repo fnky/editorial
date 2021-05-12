@@ -1,5 +1,8 @@
-import { createCss, StitchesCss } from "@stitches/react";
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any */
 import type { Properties } from "@stitches/core/types/css-types";
+import type { StitchesCss } from "@stitches/react";
+import { createCss } from "@stitches/react";
+
 export type { StitchesVariants } from "@stitches/react";
 
 const stitches = createCss({
@@ -253,124 +256,124 @@ const stitches = createCss({
     light: "(prefers-color-scheme: light)",
   },
   utils: {
-    p: (config) => (value: any) => ({
+    p: (_config) => (value: any) => ({
       paddingTop: value,
       paddingBottom: value,
       paddingLeft: value,
       paddingRight: value,
     }),
-    pt: (config) => (value: any) => ({
+    pt: (_config) => (value: any) => ({
       paddingTop: value,
     }),
-    pr: (config) => (value: any) => ({
+    pr: (_config) => (value: any) => ({
       paddingRight: value,
     }),
-    pb: (config) => (value: any) => ({
+    pb: (_config) => (value: any) => ({
       paddingBottom: value,
     }),
-    pl: (config) => (value: any) => ({
+    pl: (_config) => (value: any) => ({
       paddingLeft: value,
     }),
-    px: (config) => (value: any) => ({
+    px: (_config) => (value: any) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    py: (config) => (value: any) => ({
+    py: (_config) => (value: any) => ({
       paddingTop: value,
       paddingBottom: value,
     }),
 
-    m: (config) => (value: any) => ({
+    m: (_config) => (value: any) => ({
       marginTop: value,
       marginBottom: value,
       marginLeft: value,
       marginRight: value,
     }),
-    mt: (config) => (value: any) => ({
+    mt: (_config) => (value: any) => ({
       marginTop: value,
     }),
-    mr: (config) => (value: any) => ({
+    mr: (_config) => (value: any) => ({
       marginRight: value,
     }),
-    mb: (config) => (value: any) => ({
+    mb: (_config) => (value: any) => ({
       marginBottom: value,
     }),
-    ml: (config) => (value: any) => ({
+    ml: (_config) => (value: any) => ({
       marginLeft: value,
     }),
-    mx: (config) => (value: any) => ({
+    mx: (_config) => (value: any) => ({
       marginLeft: value,
       marginRight: value,
     }),
-    my: (config) => (value: any) => ({
+    my: (_config) => (value: any) => ({
       marginTop: value,
       marginBottom: value,
     }),
 
-    ta: (config) => (value: any) => ({ textAlign: value }),
+    ta: (_config) => (value: any) => ({ textAlign: value }),
 
-    fd: (config) => (value: any) => ({ flexDirection: value }),
-    fw: (config) => (value: any) => ({ flexWrap: value }),
+    fd: (_config) => (value: any) => ({ flexDirection: value }),
+    fw: (_config) => (value: any) => ({ flexWrap: value }),
 
-    ai: (config) => (value: any) => ({ alignItems: value }),
-    ac: (config) => (value: any) => ({ alignContent: value }),
-    jc: (config) => (value: any) => ({ justifyContent: value }),
-    as: (config) => (value: any) => ({ alignSelf: value }),
-    fg: (config) => (value: any) => ({ flexGrow: value }),
-    fs: (config) => (value: any) => ({ flexShrink: value }),
-    fb: (config) => (value: any) => ({ flexBasis: value }),
+    ai: (_config) => (value: any) => ({ alignItems: value }),
+    ac: (_config) => (value: any) => ({ alignContent: value }),
+    jc: (_config) => (value: any) => ({ justifyContent: value }),
+    as: (_config) => (value: any) => ({ alignSelf: value }),
+    fg: (_config) => (value: any) => ({ flexGrow: value }),
+    fs: (_config) => (value: any) => ({ flexShrink: value }),
+    fb: (_config) => (value: any) => ({ flexBasis: value }),
 
-    bc: (config) => (value: any) => ({
+    bc: (_config) => (value: any) => ({
       backgroundColor: value,
     }),
 
-    br: (config) => (value: any) => ({
+    br: (_config) => (value: any) => ({
       borderRadius: value,
     }),
-    btrr: (config) => (value: any) => ({
+    btrr: (_config) => (value: any) => ({
       borderTopRightRadius: value,
     }),
-    bbrr: (config) => (value: any) => ({
+    bbrr: (_config) => (value: any) => ({
       borderBottomRightRadius: value,
     }),
-    bblr: (config) => (value: any) => ({
+    bblr: (_config) => (value: any) => ({
       borderBottomLeftRadius: value,
     }),
-    btlr: (config) => (value: any) => ({
+    btlr: (_config) => (value: any) => ({
       borderTopLeftRadius: value,
     }),
 
-    bs: (config) => (value: any) => ({ boxShadow: value }),
+    bs: (_config) => (value: any) => ({ boxShadow: value }),
 
-    lh: (config) => (value: any) => ({ lineHeight: value }),
+    lh: (_config) => (value: any) => ({ lineHeight: value }),
 
-    ox: (config) => (value: any) => ({ overflowX: value }),
-    oy: (config) => (value: any) => ({ overflowY: value }),
+    ox: (_config) => (value: any) => ({ overflowX: value }),
+    oy: (_config) => (value: any) => ({ overflowY: value }),
 
-    pe: (config) => (value: any) => ({ pointerEvents: value }),
-    us: (config) => (value: any) => ({
+    pe: (_config) => (value: any) => ({ pointerEvents: value }),
+    us: (_config) => (value: any) => ({
       WebkitUserSelect: value,
       userSelect: value,
     }),
 
-    size: (config) => (value: any) => ({
+    size: (_config) => (value: any) => ({
       width: value,
       height: value,
     }),
 
-    linearGradient: (config) => (value: any) => ({
+    linearGradient: (_config) => (value: any) => ({
       backgroundImage: `linear-gradient(${value})`,
     }),
 
-    appearance: (config) => (value) => ({
+    appearance: (_config) => (value) => ({
       WebkitAppearance: value,
       appearance: value,
     }),
-    userSelect: (config) => (value) => ({
+    userSelect: (_config) => (value) => ({
       WebkitUserSelect: value,
       userSelect: value,
     }),
-    backgroundClip: (config) => (value) => ({
+    backgroundClip: (_config) => (value) => ({
       WebkitBackgroundClip: value,
       backgroundClip: value,
     }),
@@ -397,35 +400,35 @@ type CSSProperty = keyof Properties;
 
 type TokenVartiant<S> = S extends `$${infer R}` ? R : S;
 type TokenVariants<T> = { [K in keyof T as TokenVartiant<K>]: K };
-type MapVariantToCSSProp<
+type MapVariantToCSSProperty<
   Token extends ThemeToken,
-  CSSProp extends CSSProperty
+  Property extends CSSProperty
 > = {
   [K in keyof TokenVariants<Theme[Token]>]: {
-    [P in CSSProp]: TokenVariants<Theme[Token]>[K];
+    [P in Property]: TokenVariants<Theme[Token]>[K];
   };
 };
 
 export function createTokenVariant<
   Token extends ThemeToken,
-  CSSProp extends CSSProperty
+  Property extends CSSProperty
 >(
   token: Token,
-  cssProps: CSSProp | CSSProp[],
-): MapVariantToCSSProp<Token, CSSProp> {
+  cssProps: Property | Property[],
+): MapVariantToCSSProperty<Token, Property> {
   const themeTokens = theme[token];
   const tokenProps = themeTokens;
   const entries = Object.entries(tokenProps).map(([key]) => {
-    let value: { [key: string]: string };
+    let value: Record<string, string>;
 
     if (Array.isArray(cssProps)) {
       if (cssProps.length === 1) {
         value = { [cssProps[0]]: key };
       } else {
-        value = cssProps.reduce((obj, prop) => {
-          obj[prop] = key;
-          return obj;
-        }, {} as { [key: string]: string });
+        value = cssProps.reduce<Record<string, string>>((object, property) => {
+          object[property] = key;
+          return object;
+        }, {});
       }
     } else {
       value = { [cssProps]: key };
@@ -435,10 +438,10 @@ export function createTokenVariant<
       return [key.slice(1), value];
     }
     return [key, value];
-  }) as [key: string, value: unknown][];
-  const props = Object.fromEntries(entries) as MapVariantToCSSProp<
+  }) as Array<[key: string, value: unknown]>;
+  const props = Object.fromEntries(entries) as MapVariantToCSSProperty<
     Token,
-    CSSProp
+    Property
   >;
   return props;
 }

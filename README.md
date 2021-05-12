@@ -39,7 +39,7 @@ Run the following command in the project directory to create and run new
 Postgres container in detached mode:
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 You can stop and remove the container with the `down` command.

@@ -1,7 +1,5 @@
-import { ReactElement, useState } from "react";
-import { useRecoilState } from "recoil";
+import * as React from "react";
 import { CaretDownIcon } from "@radix-ui/react-icons";
-import { css, styled } from "stitches.config";
 import {
   DocumentTitle,
   Flex,
@@ -10,7 +8,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "components";
-
+import { useRecoilState } from "recoil";
+import { styled } from "stitches.config";
 import EditorDetailsFormView from "./EditorDetailsFormView";
 import { titleState } from "./EditorState";
 
@@ -54,36 +53,36 @@ const ArrowTrigger = styled(PopoverTrigger, {
   },
 });
 
-const titleButtonCss = css({
-  paddingLeft: "$1",
-  paddingRight: "$1",
-  marginLeft: "-$1",
-  marginRight: "-$1",
-  fontWeight: 500,
-  fontSize: "$2",
-  // @TODO: Tweak this so it better matches truncating based on the viewport width
-  //        (take action buttons width into consideration)
-  maxWidth: "calc(40px + (600 - 40) * ((90vw - 200px) / (1600 - 200)))",
-  bp2: {
-    fontSize: "$3",
-  },
-});
+// const titleButtonCss = css({
+//   paddingLeft: "$1",
+//   paddingRight: "$1",
+//   marginLeft: "-$1",
+//   marginRight: "-$1",
+//   fontWeight: 500,
+//   fontSize: "$2",
+//   // @TODO: Tweak this so it better matches truncating based on the viewport width
+//   //        (take action buttons width into consideration)
+//   maxWidth: "calc(40px + (600 - 40) * ((90vw - 200px) / (1600 - 200)))",
+//   bp2: {
+//     fontSize: "$3",
+//   },
+// });
 
-const TitleButtonInner = styled("span", {
-  display: "block",
-  textOverflow: "ellipsis",
-  overflow: "hidden",
-  whiteSpace: "nowrap",
-  justifyContent: "flex-start",
-  // maxWidth: "96px",
-});
+// const TitleButtonInner = styled("span", {
+//   display: "block",
+//   textOverflow: "ellipsis",
+//   overflow: "hidden",
+//   whiteSpace: "nowrap",
+//   justifyContent: "flex-start",
+//   // maxWidth: "96px",
+// });
 
 const EditorDetailsPopoverContent = styled(PopoverContent, {
   padding: "20px",
 });
 
-const EditorDetailsPopover = () => {
-  const [open, setOpen] = useState(false);
+function EditorDetailsPopover(): React.ReactElement {
+  const [open, setOpen] = React.useState(false);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <ArrowTrigger state={open ? "active" : undefined}>
@@ -94,14 +93,14 @@ const EditorDetailsPopover = () => {
       </EditorDetailsPopoverContent>
     </Popover>
   );
-};
+}
 
 const Title = styled(FluidTextInput, {
   margin: "0 -$1",
   fontWeight: 500,
 });
 
-export default function EditorTitleView(): ReactElement {
+export default function EditorTitleView(): React.ReactElement {
   const [title, setTitle] = useRecoilState(titleState);
 
   return (

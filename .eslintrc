@@ -1,0 +1,319 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "import",
+    "jsx-a11y",
+    "unicorn",
+    "destructuring",
+    "promise",
+    "import-helpers",
+    "optimize-regex",
+    "tsdoc",
+    "react-perf",
+    "security"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json",
+    "warnOnUnsupportedTypeScriptVersion": true
+  },
+  "reportUnusedDisableDirectives": true,
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/extensions": [".jpg", ".svg"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "typescript": {
+        "project": "tsconfig.json"
+      }
+    }
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "eqeqeq": ["error", "always", { "null": "never" }],
+    "no-console": "error",
+    "func-names": ["error", "as-needed"],
+    "import/no-anonymous-default-export": "error",
+    "import/no-unresolved": "error",
+    "import/first": "error",
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "js": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/newline-after-import": "error",
+    "import/prefer-default-export": "off",
+    "import/no-unassigned-import": [
+      "error",
+      {
+        "allow": ["**/*.css"]
+      }
+    ],
+    "import/no-named-default": "error",
+    "import/no-extraneous-dependencies": "error",
+    "import/no-unused-modules": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ],
+    "import/no-commonjs": "error",
+    "import/no-amd": "error",
+    "import-helpers/order-imports": [
+      "error",
+      {
+        "newlinesBetween": "never",
+        "alphabetize": {
+          "order": "asc"
+        },
+        "groups": [
+          "/^react$/",
+          "/^emotion$/",
+          "/^@emotion\\//",
+          "module",
+          "sibling",
+          "parent"
+        ]
+      }
+    ],
+    "id-length": [
+      "error",
+      { "min": 2, "exceptions": ["x", "y", "p", "m", "t"] }
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "react/prop-types": "off",
+    "react/jsx-uses-vars": "warn",
+    "react/jsx-uses-react": "warn",
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": { "camelCase": true, "pascalCase": true },
+        "ignore": [".d.ts$"]
+      }
+    ],
+    "unicorn/no-null": "off",
+    "unicorn/prefer-spread": "off",
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "allowList": {
+          "Props": true,
+          "props": true,
+          "args": true,
+          "Args": true,
+          "ref": true,
+          "Ref": true,
+          "params": true,
+          "Params": true,
+          "env": true,
+          "getInitialProps": true,
+          "getStaticProps": true
+        }
+      }
+    ],
+    "unicorn/no-reduce": "error",
+    "destructuring/in-params": ["error", { "max-params": 0 }],
+    "destructuring/in-methods-params": ["error"],
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        "additionalHooks": "(useRecoilCallback|useResetRecoilState|useSetRecoilState)"
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "function-declaration",
+        "unnamedComponent": "function-declaration"
+      }
+    ],
+    "react/display-name": "off",
+    "react/button-has-type": "error",
+    "react/destructuring-assignment": ["error", "never"],
+    "react/react-in-jsx-scope": "off",
+    "promise/prefer-await-to-then": "error",
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/no-unnecessary-condition": "error",
+    "@typescript-eslint/strict-boolean-expressions": "error",
+    "@typescript-eslint/no-empty-interface": [
+      "error",
+      {
+        "allowSingleExtends": true
+      }
+    ],
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        "default": "array-simple"
+      }
+    ],
+    "@typescript-eslint/consistent-type-assertions": [
+      "error",
+      {
+        "assertionStyle": "as",
+        "objectLiteralTypeAssertions": "never"
+      }
+    ],
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "@typescript-eslint/method-signature-style": ["error", "method"],
+    "@typescript-eslint/no-base-to-string": "error",
+    "@typescript-eslint/await-thenable": "error",
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-expect-error": "allow-with-description",
+        "minimumDescriptionLength": 10
+      }
+    ],
+    "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-parameter-properties": "error",
+    "@typescript-eslint/no-require-imports": "error",
+    "@typescript-eslint/no-throw-literal": "error",
+    "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+    "@typescript-eslint/prefer-for-of": "error",
+    "@typescript-eslint/prefer-includes": "error",
+    "@typescript-eslint/prefer-namespace-keyword": "error",
+    "@typescript-eslint/prefer-nullish-coalescing": "error",
+    "@typescript-eslint/prefer-optional-chain": "error",
+    "@typescript-eslint/prefer-reduce-type-parameter": "error",
+    "@typescript-eslint/prefer-string-starts-ends-with": "error",
+    "@typescript-eslint/prefer-ts-expect-error": "error",
+    "@typescript-eslint/require-array-sort-compare": "error",
+    "@typescript-eslint/switch-exhaustiveness-check": "error",
+    "@typescript-eslint/prefer-literal-enum-member": "error",
+    "@typescript-eslint/prefer-enum-initializers": "error",
+    "@typescript-eslint/prefer-function-type": "error",
+    "@typescript-eslint/promise-function-async": "error",
+    "@typescript-eslint/no-unnecessary-type-constraint": "error",
+    "@typescript-eslint/no-unnecessary-type-arguments": "error",
+    "@typescript-eslint/no-extraneous-class": "error",
+    "@typescript-eslint/no-invalid-void-type": "error",
+    "@typescript-eslint/no-dynamic-delete": "error",
+    "@typescript-eslint/consistent-indexed-object-style": ["error", "record"],
+    "@typescript-eslint/no-confusing-void-expression": "error",
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "disallowTypeAnnotations": true
+      }
+    ],
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "default",
+        "format": ["camelCase"]
+      },
+      {
+        "selector": "objectLiteralProperty",
+        "format": ["PascalCase"],
+        "filter": {
+          "regex": "^(Webkit|Moz)",
+          "match": true
+        }
+      },
+      {
+        "selector": "variable",
+        "modifiers": ["const"],
+        "format": ["UPPER_CASE", "PascalCase", "camelCase"]
+      },
+      {
+        "selector": "variableLike",
+        "leadingUnderscore": "allow",
+        "format": ["camelCase", "PascalCase"]
+      },
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "enumMember",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "property",
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow",
+        "filter": {
+          "regex": "^_id$",
+          "match": true
+        }
+      },
+      {
+        "selector": "memberLike",
+        "format": ["UPPER_CASE"],
+        "filter": {
+          "regex": "^NODE_ENV$",
+          "match": true
+        }
+      }
+    ],
+    "@typescript-eslint/member-ordering": [
+      "error",
+      {
+        "default": ["field", "signature", "constructor", "method"]
+      }
+    ],
+    "optimize-regex/optimize-regex": "error",
+    "tsdoc/syntax": "error"
+  },
+  "overrides": [
+    {
+      "files": ["typings/*"],
+      "rules": {
+        "unicorn/filename-case": "off"
+      }
+    }
+  ]
+}

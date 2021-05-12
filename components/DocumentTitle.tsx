@@ -1,6 +1,7 @@
 import type { ReactNode, ReactElement, MouseEventHandler } from "react";
 import { styled } from "stitches.config";
-import { Button, Box, Text, ButtonProps } from "./";
+import type { ButtonProps } from "./";
+import { Button, Box, Text } from "./";
 
 const StyledDocumentTitle = styled(Box, {
   display: "inline-flex",
@@ -23,30 +24,21 @@ interface FolderNameProps extends ButtonProps {
   onClick?: MouseEventHandler;
 }
 
-const FolderName = ({
-  children,
-  disabled,
-  onClick,
-  ...props
-}: FolderNameProps) => {
-  return (
-    <Button type="button" variant="link" {...props}>
-      {children}
-    </Button>
-  );
-};
+function FolderName(props: FolderNameProps): React.ReactElement {
+  return <Button type="button" variant="link" {...props} />;
+}
 
-type DocumentTitleOwnProps = {
+interface DocumentTitleOwnProps {
   title: ReactNode;
   folder?: string;
   onClickFolder?: MouseEventHandler;
   className?: string;
-};
+}
 
 export function DocumentTitle(props: DocumentTitleOwnProps): ReactElement {
   return (
     <StyledDocumentTitle className={props.className}>
-      {props.folder ? (
+      {props.folder != null ? (
         <>
           {typeof props.onClickFolder === "function" ? (
             <FolderName

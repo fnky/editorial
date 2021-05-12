@@ -1,33 +1,34 @@
 import * as React from "react";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, CSS, StitchesVariants } from "stitches.config";
+import { useOnClickOutside } from "hooks/useOnClickOutside";
+import type { CSS, StitchesVariants } from "stitches.config";
+import { styled } from "stitches.config";
 import useResizeObserver from "use-resize-observer";
 import { createReducer } from "utils/createReducer";
-import { useOnClickOutside } from "hooks/useOnClickOutside";
 
 const DEFAULT_TAG = "fieldset";
 
-type State = {
+interface State {
   inputValue: string;
   isEditing: boolean;
-};
+}
 
 type Action =
-  | { type: "BEGIN_EDIT" }
-  | { type: "FINISH_EDIT" }
-  | { type: "SET_VALUE"; value: string }
-  | { type: "CANCEL"; value: string };
+  | { type: "beginEdit" }
+  | { type: "finishEdit" }
+  | { type: "setValue"; value: string }
+  | { type: "cancel"; value: string };
 
 const init = (value?: string): State => ({
-  inputValue: value || "",
+  inputValue: value ?? "",
   isEditing: false,
 });
 
 const reducer = createReducer<State, Action>({
-  BEGIN_EDIT: (state) => ({ ...state, isEditing: true }),
-  FINISH_EDIT: (state) => ({ ...state, isEditing: false }),
-  SET_VALUE: (state, action) => ({ ...state, inputValue: action.value }),
-  CANCEL: (_, action) => init(action.value),
+  beginEdit: (state) => ({ ...state, isEditing: true }),
+  finishEdit: (state) => ({ ...state, isEditing: false }),
+  setValue: (state, action) => ({ ...state, inputValue: action.value }),
+  cancel: (_state, action) => init(action.value),
 });
 
 const FluidTextInputRoot = styled(DEFAULT_TAG, {
@@ -145,25 +146,25 @@ const FluidTextInputInput = styled(FluidTextInputControl, {
   },
 });
 
-type FluidTextInputProps = {
+interface FluidTextInputProps {
   id?: string;
-  name?: string;
   value?: string;
-  defaultValue?: string;
   placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
   autoFocus?: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  onSave?: (newValue: string) => void;
-  onCancel?: () => void;
   "aria-labelledby"?: string;
-};
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onSave?(newValue: string): void;
+  oncancel?(): void;
+}
 
-type FluidTextInputCSSProp = { css?: CSS };
+interface FluidTextInputCSSProperty {
+  css?: CSS;
+}
 type FluidTextInputVariants = StitchesVariants<typeof FluidTextInputRoot>;
 type FluidTextInputOwnProps = FluidTextInputProps &
-  FluidTextInputCSSProp &
+  FluidTextInputCSSProperty &
   FluidTextInputVariants;
 
 type FluidTextInputComponent = Polymorphic.ForwardRefComponent<
@@ -174,16 +175,14 @@ type FluidTextInputComponent = Polymorphic.ForwardRefComponent<
 export const FluidTextInput = React.forwardRef((props, forwardedRef) => {
   const {
     id,
-    name,
     value,
-    defaultValue,
     placeholder,
     disabled,
     readOnly,
     autoFocus,
     onChange,
     onSave,
-    onCancel,
+    oncancel,
     ...domProps
   } = props;
   const intialValueRef = React.useRef<string | undefined>(value);
@@ -195,37 +194,38 @@ export const FluidTextInput = React.forwardRef((props, forwardedRef) => {
   );
 
   React.useEffect(() => {
-    dispatch({ type: "SET_VALUE", value: value || "" });
+    dispatch({ type: "setValue", value: value ?? "" });
   }, [value]);
 
   const displayValue = inputValue || placeholder;
-  const hasPlaceholder = placeholder && !inputValue;
+  const hasPlaceholder = placeholder != null && !inputValue;
 
   const buttonVisibility = isEditing ? "hidden" : "visible";
   const inputVisibility = isEditing ? "visible" : "hidden";
 
-  const commitChanges = () => {
+  const commitChanges = (): void => {
     onSave?.(inputValue);
-    dispatch({ type: "FINISH_EDIT" });
+    dispatch({ type: "finishEdit" });
     intialValueRef.current = inputValue || "";
     inputRef.current?.blur();
     buttonRef.current?.focus();
   };
 
-  const cancelChanges = () => {
-    onCancel?.();
-    console.log(intialValueRef.current);
-    dispatch({ type: "SET_VALUE", value: intialValueRef.current || "" });
+  const cancelChanges = (): void => {
+    oncancel?.();
+    dispatch({ type: "setValue", value: intialValueRef.current ?? "" });
     inputRef.current?.blur();
     buttonRef.current?.focus();
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: "SET_VALUE", value: event.target.value });
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    dispatch({ type: "setValue", value: event.target.value });
     onChange?.(event);
   };
 
-  const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
     if (!isEditing) return false;
 
     if (event.key === "Enter") {
@@ -239,7 +239,9 @@ export const FluidTextInput = React.forwardRef((props, forwardedRef) => {
   // TODO: Pressing 'ENTER' in input won't focus on the button and blur the input, due to some
   // mis-coordination between onFocus/onBlur on the input and how isEditing is set based on those
   // events.
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleButtonClick: React.MouseEventHandler<HTMLButtonElement> = (
+    event,
+  ) => {
     event.preventDefault();
 
     buttonRef.current?.blur();
@@ -250,11 +252,11 @@ export const FluidTextInput = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  const handleInputFocus = () => {
-    dispatch({ type: "BEGIN_EDIT" });
+  const handleInputFocus: React.FocusEventHandler<HTMLInputElement> = () => {
+    dispatch({ type: "beginEdit" });
   };
 
-  const handleInputBlur = () => {
+  const handleInputBlur: React.FocusEventHandler<HTMLInputElement> = () => {
     inputRef.current?.setSelectionRange(inputValue.length, inputValue.length);
   };
 
@@ -266,8 +268,12 @@ export const FluidTextInput = React.forwardRef((props, forwardedRef) => {
   useResizeObserver<HTMLButtonElement>({
     ref: buttonRef,
     onResize: () => {
-      const buttonElement = buttonRef.current!;
-      const inputElement = inputRef.current!;
+      const buttonElement = buttonRef.current;
+      const inputElement = inputRef.current;
+
+      if (buttonElement == null || inputElement == null) {
+        return;
+      }
 
       const rect = buttonElement.getBoundingClientRect();
 
@@ -313,6 +319,7 @@ export const FluidTextInput = React.forwardRef((props, forwardedRef) => {
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         onKeyDown={handleInputKeyDown}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={autoFocus}
         disabled={disabled}
         readOnly={readOnly}

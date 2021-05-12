@@ -1,9 +1,9 @@
 import type { ReactElement, ReactNode } from "react";
-import Link from "next/link";
 import { FileTextIcon, ReaderIcon } from "@radix-ui/react-icons";
-import { groupBy } from "lodash";
-import { styled } from "stitches.config";
 import { Box } from "components";
+import { groupBy } from "lodash";
+import Link from "next/link";
+import { styled } from "stitches.config";
 
 const List = styled(Box, {
   position: "relative",
@@ -27,6 +27,7 @@ const ListItem = styled("div", {
     borderBottom: "none",
   },
 
+  // eslint-disable-next-line id-length
   a: {
     display: "flex",
     flexDirection: "row",
@@ -161,21 +162,24 @@ type Item =
       value: Post;
     };
 
-const items = Object.entries(sections).reduce((results, [section, posts]) => {
-  results.push({ type: "section", value: section });
+const items = Object.entries(sections).reduce<Item[]>(
+  (results, [section, posts]) => {
+    results.push({ type: "section", value: section });
 
-  for (const post of posts) {
-    results.push({ type: "item", value: post });
-  }
+    for (const post of posts) {
+      results.push({ type: "item", value: post });
+    }
 
-  return results;
-}, [] as Item[]);
+    return results;
+  },
+  [],
+);
 
 function renderItem(item: Item): ReactNode {
   switch (item.type) {
     case "section":
       return <ListSectionItem key={item.value}>{item.value}</ListSectionItem>;
-    case "item":
+    case "item": {
       const post = item.value;
       return (
         <ListItem key={post.id}>
@@ -187,6 +191,7 @@ function renderItem(item: Item): ReactNode {
           </Link>
         </ListItem>
       );
+    }
     default:
       return null;
   }

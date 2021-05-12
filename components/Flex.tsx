@@ -1,28 +1,39 @@
-/* eslint-disable react/jsx-pascal-case react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/no-explicit-any, @typescript-eslint/strict-boolean-expressions, destructuring/in-params */
 import * as React from "react";
-import { styled, utils, theme } from "stitches.config";
+import { styled, config } from "stitches.config";
 import { flexGapSupported } from "./flexGapSupported";
-
-/** A lot of casting is happening in this fine which should
- * be fixed once the next version of stitches is in with the new types */
 
 // Base flex that will be used
 // when gap is supported
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const _Flex = styled("div", {
   boxSizing: "border-box",
   display: "flex",
 });
 
-// https://pbs.twimg.com/media/EcrZhh8XYAEU_-M?format=jpg&name=small
-// but for real. this will be fixed in the new stitches
+type Theme = typeof config.theme;
+
+/**
+ * Resolve a token in inside a given scale or returns undefined if it does not exist.
+ * NOTE: Might produce wrong results if the implementation in stitches changes
+ */
+const resolveTokenInTheme = <T extends keyof Theme>(
+  scale: T,
+  token: keyof Theme[T],
+): any =>
+  (token as string).startsWith("$")
+    ? (config.theme[scale] as Record<any, any>)[(token as string).substr(1)]
+    : undefined;
+
+/**
+ * Resolve the the utils in a stitches css object so that things like jc turn into justifyContent
+ * NOTE: Might produce wrong results if the implementation in stitches changes
+ */
 const resolveUtils = (css: any, resolved: any = {}): any => {
   for (const key in css) {
     const value = css[key];
-    if (key in utils) {
-      Object.assign(
-        resolved,
-        (utils as any)[key](value, { tokens: theme, utils }),
-      );
+    if (key in config.utils) {
+      Object.assign(resolved, (config.utils as any)[key](config)(value));
     } else if (typeof value === "object" && value) {
       resolved[key] = resolved[key] || {};
       Object.assign(resolved[key], resolveUtils(value));
@@ -34,10 +45,10 @@ const resolveUtils = (css: any, resolved: any = {}): any => {
 };
 
 // Old stitches types are bad so we're just casting until we start using the new fancy version
-type Props = {
+interface Props {
   css?: any;
-  style?: React.CSSProperties & { [a: string]: string };
-};
+  style?: React.CSSProperties & Record<string, string>;
+}
 
 export const Flex = (React.forwardRef<HTMLDivElement, Props>(
   ({ css, children, style, ...props }, ref): JSX.Element => {
@@ -46,10 +57,11 @@ export const Flex = (React.forwardRef<HTMLDivElement, Props>(
     // real css properties so that the polyfill is able to detect
     // and redirect them to the correct area
     const rCss = resolveUtils(css || {});
+
     const [gap, columnGap, rowGap]: any[] = [
-      style?.gap || rCss.gap,
-      style?.columnGap || rCss.columnGap,
-      style?.rowGap || rCss.rowGap,
+      style?.gap ?? rCss.gap,
+      style?.columnGap ?? rCss.columnGap,
+      style?.rowGap ?? rCss.rowGap,
     ];
 
     // when flexGap is not supported force a re-render to render the polyfill
@@ -112,16 +124,16 @@ export const Flex = (React.forwardRef<HTMLDivElement, Props>(
                 alignItems: inlineAlignItems,
                 alignContent: alignContent,
                 //* stitches has a bug when trying to set custom properties as it mistakes them for vendor prefixed properties
-                "--gap": gap ? (theme as any).space[gap] || gap : "0px",
+                "--gap": gap ? resolveTokenInTheme("space", gap) || gap : "0px",
                 // prettier-ignore
-                '--column-gap': columnGap ? (theme as any).space[columnGap] || columnGap : 'var(--gap)',
+                '--column-gap': columnGap ? resolveTokenInTheme( 'space', columnGap) || columnGap : 'var(--gap)',
                 // prettier-ignore
-                '--row-gap': rowGap ? (theme as any).space[rowGap] || rowGap : 'var(--gap)',
-              }).reduce<Record<string, string>>((acc, curr) => {
-                if (curr[1] !== undefined) {
-                  acc[curr[0]] = curr[1];
+                '--row-gap': rowGap ? resolveTokenInTheme('space', rowGap) || rowGap : 'var(--gap)',
+              }).reduce<Record<string, string>>((accumulator, current) => {
+                if (current[1] !== undefined) {
+                  accumulator[current[0]] = current[1];
                 }
-                return acc;
+                return accumulator;
               }, {}) as React.CSSProperties
             }
             css={{
@@ -131,8 +143,8 @@ export const Flex = (React.forwardRef<HTMLDivElement, Props>(
               alignItems,
               alignContent,
               flexDirection,
-              // && for Injection oooordeeerrr
-              // since atomic stitches has issues with guaranteeing the order of injection
+              // make sure we're producing a selector more specific than children's own class
+              // so that the margin below wins over the child's margin
               "&& > *": {
                 margin: "calc(var(--row-gap) / 2) calc(var(--column-gap) / 2)",
               },
@@ -150,7 +162,9 @@ export const Flex = (React.forwardRef<HTMLDivElement, Props>(
     }
     // Gap is supported or no gap is used
     return (
-      <_Flex {...props} children={children} css={css} style={style} ref={ref} />
+      <_Flex {...props} css={css} style={style} ref={ref}>
+        {children}
+      </_Flex>
     );
   },
 ) as any) as typeof _Flex;

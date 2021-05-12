@@ -1,6 +1,7 @@
 import * as React from "react";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, StitchesProps, StitchesVariants } from "stitches.config";
+import type { StitchesProps, StitchesVariants } from "stitches.config";
+import { styled } from "stitches.config";
 
 const DEFAULT_TAG = "a";
 
@@ -52,9 +53,9 @@ const StyledLink = styled(DEFAULT_TAG, {
   },
 });
 
-type LinkCSSProp = Pick<StitchesProps<typeof StyledLink>, "css">;
+type LinkCSSProperty = Pick<StitchesProps<typeof StyledLink>, "css">;
 type LinkVariants = StitchesVariants<typeof StyledLink>;
-type LinkOwnProps = LinkCSSProp & LinkVariants;
+type LinkOwnProps = LinkCSSProperty & LinkVariants;
 
 type LinkComponent = Polymorphic.ForwardRefComponent<
   typeof DEFAULT_TAG,

@@ -1,10 +1,9 @@
 import { makeSchema } from "nexus";
 import { nexusPrisma } from "nexus-plugin-prisma";
 import path from "path";
-
-import * as types from "./types";
-import { Query as QueryType } from "./Query";
 import { Mutation as MutationType } from "./Mutation";
+import { Query as QueryType } from "./Query";
+import * as types from "./types";
 
 export const schema = makeSchema({
   types: [types, QueryType, MutationType],

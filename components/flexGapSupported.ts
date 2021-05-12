@@ -1,5 +1,7 @@
+/* eslint-disable id-length, @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-explicit-any */
+
 let isSupported: null | boolean = null;
-export const flexGapSupported = () => {
+export const flexGapSupported = (): boolean => {
   if (typeof isSupported === "boolean") {
     return isSupported;
   }

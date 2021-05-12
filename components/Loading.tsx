@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
-import * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, StitchesProps, StitchesVariants } from "stitches.config";
+import type * as Polymorphic from "@radix-ui/react-polymorphic";
+import type { StitchesProps, StitchesVariants } from "stitches.config";
+import { styled } from "stitches.config";
 import { Spinner, Box } from "./";
 
 const StyledLoading = styled(Box, {
@@ -11,9 +12,9 @@ const StyledLoading = styled(Box, {
   justifyContent: "center",
 });
 
-type LoadingCSSProp = Pick<StitchesProps<typeof StyledLoading>, "css">;
+type LoadingCSSProperty = Pick<StitchesProps<typeof StyledLoading>, "css">;
 type LoadingVariants = StitchesVariants<typeof StyledLoading>;
-type LoadingOwnProps = LoadingCSSProp & LoadingVariants;
+type LoadingOwnProps = LoadingCSSProperty & LoadingVariants;
 
 type LoadingComponent = Polymorphic.ForwardRefComponent<"div", LoadingOwnProps>;
 

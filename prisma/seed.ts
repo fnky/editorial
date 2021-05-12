@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 import { PrismaClient, PostStatus } from "@prisma/client";
 import * as faker from "faker";
 import slugify from "slugify";
 
 const prisma = new PrismaClient();
 
-async function main() {
+async function main(): Promise<void> {
   const draftPostTitle = faker.lorem.sentences();
   const draftPostSlug = slugify(draftPostTitle, { lower: true });
 

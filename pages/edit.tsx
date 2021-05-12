@@ -1,19 +1,19 @@
 import type { ReactElement } from "react";
-import dynamic from "next/dynamic";
-import Page from "layouts/Page";
 import { Loading } from "components";
+import Page from "layouts/Page";
+import dynamic from "next/dynamic";
 
-const Editor = dynamic(() => import("features/Editor"), {
+const Editor = dynamic(async () => import("features/Editor"), {
   ssr: false,
   loading: () => <Loading />,
 });
 
-const EditPage = (): ReactElement => {
+function EditPage(): ReactElement {
   return (
     <Page title="Edit">
       <Editor />
     </Page>
   );
-};
+}
 
 export default EditPage;

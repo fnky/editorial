@@ -3,12 +3,13 @@ import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 import { getCssString } from "../stitches.config";
 
 export default class Document extends NextDocument {
-  render() {
+  render(): React.ReactElement {
     return (
       <Html lang="en">
         <Head>
           <style
             id="stitches"
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             dangerouslySetInnerHTML={{ __html: getCssString() }}
           />
         </Head>

@@ -1,11 +1,7 @@
 import { forwardRef } from "react";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import {
-  styled,
-  createTokenVariant,
-  StitchesProps,
-  StitchesVariants,
-} from "stitches.config";
+import type { StitchesProps, StitchesVariants } from "stitches.config";
+import { styled, createTokenVariant } from "stitches.config";
 
 const DEFAULT_TAG = "div";
 
@@ -65,9 +61,9 @@ export const StyledView = styled(DEFAULT_TAG, {
   },
 });
 
-type ViewCSSProp = Pick<StitchesProps<typeof StyledView>, "css">;
+type ViewCSSProperty = Pick<StitchesProps<typeof StyledView>, "css">;
 type ViewVariants = StitchesVariants<typeof StyledView>;
-type ViewOwnProps = ViewCSSProp & ViewVariants;
+type ViewOwnProps = ViewCSSProperty & ViewVariants;
 
 type ViewComponent = Polymorphic.ForwardRefComponent<
   typeof DEFAULT_TAG,

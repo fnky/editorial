@@ -1,22 +1,21 @@
-import type { ReactElement } from "react";
-import type { ToastType } from "rich-markdown-editor/dist/types";
+import * as React from "react";
 import { useCallback, useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import toast from "react-hot-toast";
-import RichMarkdownEditor from "rich-markdown-editor";
-import { useDebouncedCallback } from "use-debounce";
-import { styled } from "stitches.config";
 import { Box } from "components";
 import useCombinedCallback from "hooks/useCombinedCallback";
-
-import EditorToolBarView from "./EditorToolBarView";
+import toast from "react-hot-toast";
+import { useRecoilState, useRecoilValue } from "recoil";
+import RichMarkdownEditor from "rich-markdown-editor";
+import type { ToastType } from "rich-markdown-editor/dist/types";
+import { styled } from "stitches.config";
+import { useDebouncedCallback } from "use-debounce";
 import {
   contentState,
   readOnlyState,
   darkState,
   templateState,
 } from "./EditorState";
-import theme from "./editor-theme";
+import EditorToolBarView from "./EditorToolBarView";
+import theme from "./editorTheme";
 
 const Container = styled(Box, {
   paddingLeft: "$6",
@@ -34,7 +33,7 @@ const Container = styled(Box, {
   },
 });
 
-export default function EditorView(): ReactElement {
+export default function EditorView(): React.ReactElement {
   const [content, setContent] = useRecoilState(contentState);
   const [readOnly, setReadOnly] = useRecoilState(readOnlyState);
   const dark = useRecoilValue(darkState);
@@ -54,11 +53,10 @@ export default function EditorView(): ReactElement {
   }, []);
 
   const handleCancel = useCallback(() => {
-    console.log("Cancelled");
     toast.success("Cancelled all changes.");
   }, []);
 
-  const handleShowToast = useCallback((message: string, type: ToastType) => {
+  const handleShowToast = useCallback((message: string, _type: ToastType) => {
     toast(message, { icon: "ⓘ" });
   }, []);
 
@@ -113,6 +111,7 @@ export default function EditorView(): ReactElement {
           onSave={handleSave}
           onChange={handleChange}
           dark={dark}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
         />
       </Container>

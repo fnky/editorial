@@ -1,7 +1,8 @@
 import { forwardRef } from "react";
-import * as SwitchPrimitive from "@radix-ui/react-switch";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, CSS, StitchesVariants } from "stitches.config";
+import * as SwitchPrimitive from "@radix-ui/react-switch";
+import type { CSS, StitchesVariants } from "stitches.config";
+import { styled } from "stitches.config";
 
 const StyledThumb = styled(SwitchPrimitive.Thumb, {
   position: "absolute",
@@ -79,10 +80,12 @@ const StyledSwitch = styled(SwitchPrimitive.Root, {
   },
 });
 
-type SwitchCSSProp = { css?: CSS };
+interface SwitchCSSProperty {
+  css?: CSS;
+}
 type SwitchVariants = StitchesVariants<typeof StyledSwitch>;
 type SwitchOwnProps = Polymorphic.OwnProps<typeof SwitchPrimitive.Root> &
-  SwitchCSSProp &
+  SwitchCSSProperty &
   SwitchVariants;
 type SwitchComponent = Polymorphic.ForwardRefComponent<
   Polymorphic.IntrinsicElement<typeof SwitchPrimitive.Root>,

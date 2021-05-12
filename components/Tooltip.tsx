@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment, destructuring/in-params */
 import * as React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { styled } from "stitches.config";
@@ -39,7 +40,7 @@ export function Tooltip({
   onOpenChange,
   multiline,
   ...props
-}: TooltipProps) {
+}: TooltipProps): React.ReactElement {
   return (
     <TooltipPrimitive.Root
       open={open}
@@ -58,7 +59,7 @@ export function Tooltip({
           as="p"
           css={{
             color: "$loContrast",
-            lineHeight: multiline ? "1.5" : undefined,
+            lineHeight: multiline === true ? "1.5" : undefined,
           }}
         >
           {content}

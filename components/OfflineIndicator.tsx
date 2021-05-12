@@ -1,7 +1,7 @@
-import type { ReactElement } from "react";
+import * as React from "react";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
-import { styled } from "stitches.config";
 import { useOffline } from "hooks/useOffline";
+import { styled } from "stitches.config";
 import { Box, Tooltip, Text } from "./";
 
 const StyledOfflineIndicator = styled(Box, {
@@ -13,7 +13,7 @@ const StyledTooltipButton = styled("button", {
   padding: "$2",
 });
 
-export function OfflineIndicator(): ReactElement {
+export function OfflineIndicator(): React.ReactElement {
   const isOffline = useOffline();
 
   if (!isOffline) {
@@ -32,7 +32,7 @@ export function OfflineIndicator(): ReactElement {
               </strong>
             </p>
             <Text as="p" variant="dim">
-              Local changes will be saved automatically when you're online
+              Local changes will be saved automatically when you&apos;re online
               again.
             </Text>
           </div>

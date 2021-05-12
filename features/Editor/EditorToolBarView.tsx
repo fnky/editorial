@@ -1,6 +1,4 @@
-import type { MouseEventHandler, ReactElement } from "react";
-import { motion } from "framer-motion";
-import { styled } from "stitches.config";
+import * as React from "react";
 import {
   ToolBar,
   FlexibleSpace,
@@ -10,10 +8,11 @@ import {
   ShadowHeaderContent,
   OfflineIndicator,
 } from "components";
-
+import { motion } from "framer-motion";
+import { styled } from "stitches.config";
 import EditorActionsView from "./EditorActionsView";
-import EditorTitleView from "./EditorTitleView";
 import EditorMenuView from "./EditorMenuView";
+import EditorTitleView from "./EditorTitleView";
 
 export const ToolBarRoot = styled(ShadowHeaderRoot, {
   userSelect: "none",
@@ -97,14 +96,16 @@ const variants = {
   },
 };
 
-type ToolBarViewProps = {
+interface ToolBarViewProps {
   hidden?: boolean;
-  onMouseEnter?: MouseEventHandler;
-  onMouseLeave?: MouseEventHandler;
-};
+  onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
+}
 
-export default function ToolBarView(props: ToolBarViewProps): ReactElement {
-  const visibility = props.hidden ? "hidden" : "visible";
+export default function ToolBarView(
+  props: ToolBarViewProps,
+): React.ReactElement {
+  const visibility = props.hidden === true ? "hidden" : "visible";
   return (
     <ToolBarRoot
       visibility={visibility}

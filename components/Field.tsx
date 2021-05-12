@@ -1,4 +1,4 @@
-import type { ReactNode, AllHTMLAttributes } from "react";
+import * as React from "react";
 import { styled } from "stitches.config";
 import { Box, Input } from "./";
 
@@ -14,36 +14,37 @@ const StyledField = styled("label", {
   },
 });
 
-type FieldProps = {
+interface FieldProps {
   id?: string;
   label: string;
-  children?: ReactNode;
-};
+  children?: React.ReactNode;
+}
 
-export const Field = ({ id, label, children }: FieldProps) => {
+export function Field(props: FieldProps): React.ReactElement {
   return (
-    <StyledField htmlFor={id}>
-      <div>{label}</div>
-      {children}
+    <StyledField htmlFor={props.id}>
+      <div>{props.label}</div>
+      {props.children}
     </StyledField>
   );
-};
+}
 
-type InputDOMProps = AllHTMLAttributes<HTMLInputElement>;
+type InputDOMProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 type InputFieldProps = InputDOMProps & {
   id?: string;
   label: string;
-  children?: ReactNode;
 };
 
-export const InputField = ({ id, label, ...props }: InputFieldProps) => {
+export function InputField(props: InputFieldProps): React.ReactElement {
+  // eslint-disable-next-line react/destructuring-assignment
+  const { id, label, ...inputProps } = props;
   return (
     <Field id={id} label={label}>
-      <Input {...props} id={id} />
+      <Input {...inputProps} id={id} />
     </Field>
   );
-};
+}
 
 export const FieldGroup = styled(Box, {
   display: "flex",

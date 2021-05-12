@@ -1,6 +1,7 @@
 import React from "react";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
-import { styled, CSS, StitchesVariants } from "stitches.config";
+import type { CSS, StitchesVariants } from "stitches.config";
+import { styled } from "stitches.config";
 
 const DEFAULT_TAG = "button";
 
@@ -246,10 +247,13 @@ const StyledButton = styled(DEFAULT_TAG, {
   },
 });
 
-type ButtonCSSProp = { css?: CSS };
+interface ButtonCSSProperty {
+  css?: CSS;
+}
 // TODO: Remove omit fix when this is merged https://github.com/modulz/stitches/issues/421
 type ButtonVariants = Omit<StitchesVariants<typeof StyledButton>, "size">;
-type ButtonOwnProps = ButtonCSSProp & ButtonVariants & { size?: any };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ButtonOwnProps = ButtonCSSProperty & ButtonVariants & { size?: any };
 
 type ButtonComponent = Polymorphic.ForwardRefComponent<
   typeof DEFAULT_TAG,
@@ -261,3 +265,5 @@ export type ButtonProps = ButtonOwnProps;
 export const Button = React.forwardRef((props, forwardedRef) => {
   return <StyledButton {...props} ref={forwardedRef} />;
 }) as ButtonComponent;
+
+Button.displayName = "Button";

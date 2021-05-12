@@ -1,4 +1,5 @@
-import { forwardRef, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
 import type * as Polymorphic from "@radix-ui/react-polymorphic";
 import { styled } from "stitches.config";
 
@@ -53,10 +54,10 @@ const HeaderContent = styled(SHADOW_HEADER_CONTENT_DEFAULT_TAG, {
   zIndex: 3,
 });
 
-type ShadowHeaderOwnProps = {
+interface ShadowHeaderOwnProps {
   children?: ReactNode;
   height?: number;
-};
+}
 
 const ShadowHeader = forwardRef((props: ShadowHeaderOwnProps, forwardedRef) => {
   const { children, height, ...domProps } = props;

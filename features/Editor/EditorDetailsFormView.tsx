@@ -1,18 +1,21 @@
-import type { ChangeEvent, ReactElement } from "react";
-import { useRecoilState } from "recoil";
+import * as React from "react";
 import { Field, FieldGroup, Form, InputField, Switch } from "components";
-
+import { useRecoilState } from "recoil";
 import { slugState, titleState } from "./EditorState";
 
-export default function EditorDetailsFormView(): ReactElement {
+export default function EditorDetailsFormView(): React.ReactElement {
   const [title, setTitle] = useRecoilState(titleState);
   const [slug, setSlug] = useRecoilState(slugState);
 
-  const handleChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeTitle: React.ChangeEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
     setTitle(event.target.value);
   };
 
-  const handleChangeSlug = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeSlug: React.ChangeEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
     setSlug(event.target.value);
   };
 

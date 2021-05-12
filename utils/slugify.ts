@@ -1,12 +1,12 @@
 import originalSlugify from "slugify";
 
-type SlugifyOptions = {
+interface SlugifyOptions {
   replacement?: string;
   remove?: RegExp;
   lower?: boolean;
   strict?: boolean;
   locale?: string;
-};
+}
 
 function slugify(string: string): string;
 function slugify(string: string, options: SlugifyOptions): string;

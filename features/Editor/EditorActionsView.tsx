@@ -1,11 +1,10 @@
-import type { ReactElement, MouseEventHandler } from "react";
+import * as React from "react";
 import { useCallback } from "react";
-import { useRecoilState } from "recoil";
-import toast from "react-hot-toast";
-import { motion, AnimateSharedLayout } from "framer-motion";
-import { styled } from "stitches.config";
 import { Box, Button } from "components";
-
+import { motion, AnimateSharedLayout } from "framer-motion";
+import toast from "react-hot-toast";
+import { useRecoilState } from "recoil";
+import { styled } from "stitches.config";
 import { readOnlyState } from "./EditorState";
 
 const EditorActions = styled(Box, {});
@@ -18,29 +17,32 @@ const Group = styled(motion.div, {
   },
 });
 
-export default function EditorActionsView(): ReactElement {
+export default function EditorActionsView(): React.ReactElement {
   const [readOnly, setReadOnly] = useRecoilState(readOnlyState);
-  const isEditing = readOnly === false;
 
-  const edit = useCallback<MouseEventHandler>(() => {
+  const edit = useCallback<React.MouseEventHandler<HTMLButtonElement>>(() => {
     setReadOnly(false);
   }, []);
 
-  const save = useCallback<MouseEventHandler>(() => {
+  const save = useCallback<React.MouseEventHandler<HTMLButtonElement>>(() => {
     setReadOnly(true);
     toast.success("Changes have been saved!", { id: "save" });
   }, []);
 
-  const cancel = useCallback<MouseEventHandler>(() => {
+  const cancel = useCallback<React.MouseEventHandler<HTMLButtonElement>>(() => {
     setReadOnly(true);
   }, []);
 
-  const publish = useCallback<MouseEventHandler>(() => {}, []);
+  const publish = useCallback<
+    React.MouseEventHandler<HTMLButtonElement>
+  >(() => {
+    // noop
+  }, []);
 
   return (
     <EditorActions>
       <AnimateSharedLayout type="crossfade">
-        {isEditing ? (
+        {!readOnly ? (
           <Group
             layoutId="state"
             initial={{ scale: 0.8, opacity: 0 }}
